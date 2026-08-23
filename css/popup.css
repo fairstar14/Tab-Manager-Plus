@@ -922,8 +922,9 @@ table td {
 /* 数字角标 */
 .tab .dup-badge {
 	position: absolute;
-	top: -2px;
-	right: -2px;
+	top: -12px;
+	left: 50%;
+	transform: translateX(-50%);
 	background: rgba(0, 0, 0, 0.8);
 	color: white;
 	font-size: 10px;
