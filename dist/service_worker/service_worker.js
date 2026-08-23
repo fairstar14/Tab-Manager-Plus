@@ -1069,11 +1069,6 @@
   var open_popup = "open_popup";
   var open_sidebar = "open_sidebar";
   var sep1 = "sep1";
-  var support_menu = "support_menu";
-  var review = "review";
-  var donate = "donate";
-  var patron = "patron";
-  var twitter = "twitter";
   var code_menu = "code_menu";
   var changelog = "changelog";
   var options = "options";
@@ -1782,35 +1777,6 @@
       contexts: ["action"]
     });
     browser7.contextMenus.create({
-      title: "\u{1F60D} \u652F\u6301\u6B64\u6269\u5C55",
-      id: support_menu,
-      "contexts": ["action"]
-    });
-    browser7.contextMenus.create({
-      id: review,
-      title: "\u2B50 \u8BC4\u4EF7",
-      "contexts": ["action"],
-      parentId: "support_menu"
-    });
-    browser7.contextMenus.create({
-      id: donate,
-      title: "\u2615 \u8D5E\u52A9\u652F\u6301\u6269\u5C55\u5F00\u53D1",
-      "contexts": ["action"],
-      parentId: "support_menu"
-    });
-    browser7.contextMenus.create({
-      id: patron,
-      title: "\u{1F4B0} \u6210\u4E3A\u8D5E\u52A9\u8005",
-      "contexts": ["action"],
-      parentId: "support_menu"
-    });
-    browser7.contextMenus.create({
-      id: twitter,
-      title: "\u{1F426} \u5728 Twitter \u4E0A\u5173\u6CE8",
-      "contexts": ["action"],
-      parentId: "support_menu"
-    });
-    browser7.contextMenus.create({
       title: "\u{1F914} \u95EE\u9898\u4E0E\u5EFA\u8BAE",
       id: code_menu,
       "contexts": ["action"]
@@ -1829,7 +1795,7 @@
     });
     browser7.contextMenus.create({
       id: source,
-      title: "\u{1F4BB} \u67E5\u770B\u6E90\u7801",
+      title: "\u{1F4BB} \u67E5\u770B Fork \u6E90\u7801",
       "contexts": ["action"],
       parentId: "code_menu"
     });
@@ -1859,12 +1825,6 @@
       case open_sidebar:
         await openSidebar();
         break;
-      case donate:
-        await browser7.tabs.create({ url: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=67TZLSEGYQFFW" });
-        break;
-      case patron:
-        await browser7.tabs.create({ url: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=67TZLSEGYQFFW" });
-        break;
       case changelog:
         await browser7.tabs.create({ url: "changelog.html" });
         break;
@@ -1875,21 +1835,11 @@
         await browser7.tabs.create({ url: "https://github.com/stefanXO/Tab-Manager-Plus/issues" });
         break;
       case source:
-        await browser7.tabs.create({ url: "https://github.com/stefanXO/Tab-Manager-Plus" });
-        break;
-      case twitter:
-        await browser7.tabs.create({ url: "https://www.twitter.com/mastef" });
+        await browser7.tabs.create({ url: "https://github.com/fairstar14/Tab-Manager-Plus" });
         break;
       case send:
         await browser7.tabs.create({ url: "https://github.com/stefanXO/Tab-Manager-Plus/issues" });
         await browser7.tabs.create({ url: "mailto:markus+tmp@stefanxo.com" });
-        break;
-      case review:
-        if (navigator.userAgent.search("Firefox") > -1) {
-          await browser7.tabs.create({ url: "https://addons.mozilla.org/en-US/firefox/addon/tab-manager-plus-for-firefox/" });
-        } else {
-          await browser7.tabs.create({ url: "https://chrome.google.com/webstore/detail/tab-manager-plus-for-chro/cnkdjjdmfiffagllbiiilooaoofcoeff" });
-        }
         break;
     }
   }

@@ -7844,7 +7844,6 @@
       this.darkText = this.darkText.bind(this);
       this.deleteTabs = this.deleteTabs.bind(this);
       this.discardTabs = this.discardTabs.bind(this);
-      this.donate = this.donate.bind(this);
       this.exportSessions = this.exportSessions.bind(this);
       this.exportSessionsText = this.exportSessionsText.bind(this);
       this.getTip = this.getTip.bind(this);
@@ -8163,7 +8162,7 @@
             getTip: this.getTip
           }
         )),
-        /* @__PURE__ */ React3.createElement("div", { className: "window top", ref: "tophover" }, /* @__PURE__ */ React3.createElement("div", { className: "icon windowaction donate", title: "\u8D5E\u52A9", onClick: this.donate, onMouseEnter: this.hoverIcon }), /* @__PURE__ */ React3.createElement(
+        /* @__PURE__ */ React3.createElement("div", { className: "window top", ref: "tophover" }, /* @__PURE__ */ React3.createElement(
           "div",
           {
             className: "icon windowaction rate",
@@ -8357,10 +8356,6 @@
       } else {
         browser5.tabs.create({ url: "https://chrome.google.com/webstore/detail/tab-manager-plus-for-chro/cnkdjjdmfiffagllbiiilooaoofcoeff" });
       }
-      this.forceUpdate();
-    }
-    donate() {
-      browser5.tabs.create({ url: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=67TZLSEGYQFFW" });
       this.forceUpdate();
     }
     toggleOptions() {

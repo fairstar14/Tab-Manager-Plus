@@ -36,40 +36,6 @@ export async function setupContextMenus() {
 	});
 
 	browser.contextMenus.create({
-		title: "😍 支持此扩展",
-		id: S.support_menu,
-		"contexts": ["action"]
-	});
-
-	browser.contextMenus.create({
-		id: S.review,
-		title: "⭐ 评价",
-		"contexts": ["action"],
-		parentId: "support_menu"
-	});
-
-	browser.contextMenus.create({
-		id: S.donate,
-		title: "☕ 赞助支持扩展开发",
-		"contexts": ["action"],
-		parentId: "support_menu"
-	});
-
-	browser.contextMenus.create({
-		id: S.patron,
-		title: "💰 成为赞助者",
-		"contexts": ["action"],
-		parentId: "support_menu"
-	});
-
-	browser.contextMenus.create({
-		id: S.twitter,
-		title: "🐦 在 Twitter 上关注",
-		"contexts": ["action"],
-		parentId: "support_menu"
-	});
-
-	browser.contextMenus.create({
 		title: "🤔 问题与建议",
 		id: S.code_menu,
 		"contexts": ["action"]
@@ -91,7 +57,7 @@ export async function setupContextMenus() {
 
 	browser.contextMenus.create({
 		id: S.source,
-		title: "💻 查看源码",
+		title: "💻 查看 Fork 源码",
 		"contexts": ["action"],
 		parentId: "code_menu"
 	});
@@ -126,12 +92,6 @@ async function contextListeners(info: browser.Menus.OnClickData, tab?: browser.T
 		case S.open_sidebar:
 			await openSidebar();
 			break;
-		case S.donate:
-			await browser.tabs.create({url: 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=67TZLSEGYQFFW'});
-			break;
-		case S.patron:
-			await browser.tabs.create({url: 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=67TZLSEGYQFFW'});
-			break;
 		case S.changelog:
 			await browser.tabs.create({url: 'changelog.html'});
 			break;
@@ -142,21 +102,11 @@ async function contextListeners(info: browser.Menus.OnClickData, tab?: browser.T
 			await browser.tabs.create({url: 'https://github.com/stefanXO/Tab-Manager-Plus/issues'});
 			break;
 		case S.source:
-			await browser.tabs.create({url: 'https://github.com/stefanXO/Tab-Manager-Plus'});
-			break;
-		case S.twitter:
-			await browser.tabs.create({url: 'https://www.twitter.com/mastef'});
+			await browser.tabs.create({url: 'https://github.com/fairstar14/Tab-Manager-Plus'});
 			break;
 		case S.send:
 			await browser.tabs.create({url: 'https://github.com/stefanXO/Tab-Manager-Plus/issues'});
 			await browser.tabs.create({url: 'mailto:markus+tmp@stefanxo.com'});
-			break;
-		case S.review:
-			if (navigator.userAgent.search("Firefox") > -1) {
-				await browser.tabs.create({url: 'https://addons.mozilla.org/en-US/firefox/addon/tab-manager-plus-for-firefox/'});
-			} else {
-				await browser.tabs.create({url: 'https://chrome.google.com/webstore/detail/tab-manager-plus-for-chro/cnkdjjdmfiffagllbiiilooaoofcoeff'});
-			}
 			break;
 
 	}

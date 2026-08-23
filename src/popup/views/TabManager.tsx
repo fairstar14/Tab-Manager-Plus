@@ -84,7 +84,6 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 		this.darkText = this.darkText.bind(this);
 		this.deleteTabs = this.deleteTabs.bind(this);
 		this.discardTabs = this.discardTabs.bind(this);
-		this.donate = this.donate.bind(this);
 		this.exportSessions = this.exportSessions.bind(this);
 		this.exportSessionsText = this.exportSessionsText.bind(this);
 		this.getTip = this.getTip.bind(this);
@@ -448,7 +447,6 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 					/>
 				</div>}
 				<div className="window top" ref="tophover">
-					<div className="icon windowaction donate" title="赞助" onClick={this.donate} onMouseEnter={this.hoverIcon} />
 					<div
 						className="icon windowaction rate"
 						title="评价 Tab Manager Plus"
@@ -689,10 +687,6 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 		} else {
 			browser.tabs.create({ url: "https://chrome.google.com/webstore/detail/tab-manager-plus-for-chro/cnkdjjdmfiffagllbiiilooaoofcoeff" });
 		}
-		this.forceUpdate();
-	}
-	donate() {
-		browser.tabs.create({ url: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=67TZLSEGYQFFW" });
 		this.forceUpdate();
 	}
 	toggleOptions() {
