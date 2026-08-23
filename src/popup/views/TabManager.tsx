@@ -417,12 +417,14 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 							const color = this.state.connectLinesColors[colorIdx] || "rgba(128,128,128,0.5)";
 							return (
 								<path
-									key={"connectline-" + i}
-									d={line.d}
-									fill="none"
-									stroke={color}
-									strokeWidth="2"
-									strokeDasharray="4 2"
+								key={"connectline-" + i}
+								d={line.d}
+								fill="none"
+								stroke={color}
+								strokeWidth="2"
+								strokeDasharray="4 2"
+								strokeLinejoin="round"
+								strokeLinecap="round"
 								/>
 							);
 						})}
@@ -1027,8 +1029,16 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 		];
 
 		let offsetIndex = 0;
+		const groupOffsets = new Map<number, number>(); // 每个组的基线偏移
+		let groupCounter = 0;
 		for (const [group, positions] of groups) {
 			if (positions.length < 2) continue;
+			// 每个组分配一个不同的基线偏移，组间错开
+			if (!groupOffsets.has(group)) {
+				groupOffsets.set(group, groupCounter * 30);
+				groupCounter++;
+			}
+			const groupBase = groupOffsets.get(group)!;
 			// 同组内按 y 坐标排序
 			positions.sort((a, b) => a.y - b.y);
 			// 相邻标签之间画 U 形直角折线，每条线偏移递增
@@ -1039,7 +1049,8 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 				const y2 = positions[i + 1].y;
 				// 取两个标签右边缘的最大值 + 偏移量作为折线右拐点
 				const maxX = Math.max(x1, x2);
-				const offset = 15 + offsetIndex * 14; // 每条线递增14px，扇形展开
+				// 组基线 + 组内递增，确保组间组内都不重叠
+				const offset = 18 + groupBase + i * 22;
 				offsetIndex++;
 				const bendX = maxX + offset;
 				// 连连看折线：起点→右→下→左→终点（2个拐点的U形）
