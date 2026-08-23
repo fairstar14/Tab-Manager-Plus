@@ -852,10 +852,21 @@ h1,h2,h3,h4,h5,h6 {
 	width: 100%;
 }
 
-.window.searchbox input.searchBoxInput {
+/* 搜索框：select 与 input 在同一行 flex 排列 */
+.window.searchbox td.one {
+	display: flex;
+	align-items: center;
+}
+.window.searchbox td.one select {
+	flex-shrink: 0;
+	width: auto;
 	margin: 0.5rem 0.25rem 0 0.25rem;
-	min-width: auto;
-	width: 100%;
+}
+.window.searchbox td.one input.searchBoxInput {
+	flex: 1;
+	min-width: 0;
+	width: auto;
+	margin: 0.5rem 0.25rem 0 0.25rem;
 }
 
 .window.searchbox td.two {
@@ -952,19 +963,16 @@ table td {
 	z-index: 50000;
 }
 
-/* 连线按钮图标 */
+/* 连线按钮图标（与 .duplicates 一致，引用 PNG，其余继承 .icon 基础样式） */
 .icon.connect-lines {
-	background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij4KICAgIDxjaXJjbGUgY3g9IjYiIGN5PSI2IiByPSIzIiBmaWxsPSIjNjY2IiBvcGFjaXR5PSIwLjYiLz4KICAgIDxjaXJjbGUgY3g9IjE4IiBjeT0iMTgiIHI9IjMiIGZpbGw9IiM2NjYiIG9wYWNpdHk9IjAuNiIvPgogICAgPGxpbmUgeDE9IjYiIHkxPSI2IiB4Mj0iMTgiIHkyPSIxOCIgc3Ryb2tlPSIjNjY2IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjMgMiIgb3BhY2l0eT0iMC42Ii8+Cjwvc3ZnPg==);
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
+	background-image: url(../images/connect-lines.png);
 }
 .icon.connect-lines.disabled {
 	opacity: 0.25;
 	pointer-events: none;
 }
 
-/* 搜索模式下拉框 */
+/* 搜索模式下拉框（float 已移除，改由 td.one flex 容器统一排列） */
 .searchModeSelect {
 	height: 1.5rem;
 	font-size: 0.75rem;
@@ -973,5 +981,4 @@ table td {
 	border-radius: 3px;
 	background-color: white;
 	cursor: pointer;
-	float: left;
 }
