@@ -581,7 +581,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 										title="连线重复标签"
 										onClick={this.toggleConnectLines}
 										onMouseEnter={this.hoverIcon}
-									/>
+									>🔗</div>
 								</td>
 							</tr>
 						</tbody>

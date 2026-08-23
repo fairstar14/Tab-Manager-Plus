@@ -8270,7 +8270,8 @@
             title: "\u8FDE\u7EBF\u91CD\u590D\u6807\u7B7E",
             onClick: this.toggleConnectLines,
             onMouseEnter: this.hoverIcon
-          }
+          },
+          "\u{1F517}"
         )))))),
         /* @__PURE__ */ React3.createElement("div", { className: "window placeholder" })
       );
