@@ -8637,29 +8637,32 @@
       }
       const lines = [];
       const colors = [
-        "rgba(255, 99, 71, 0.6)",
-        "rgba(54, 162, 235, 0.6)",
-        "rgba(255, 206, 86, 0.6)",
-        "rgba(75, 192, 192, 0.6)",
-        "rgba(153, 102, 255, 0.6)",
-        "rgba(255, 159, 64, 0.6)",
-        "rgba(199, 199, 199, 0.6)",
-        "rgba(83, 102, 255, 0.6)",
-        "rgba(40, 180, 99, 0.6)",
-        "rgba(233, 78, 146, 0.6)"
+        "rgba(255, 99, 71, 0.7)",
+        "rgba(54, 162, 235, 0.7)",
+        "rgba(255, 206, 86, 0.7)",
+        "rgba(75, 192, 192, 0.7)",
+        "rgba(153, 102, 255, 0.7)",
+        "rgba(255, 159, 64, 0.7)",
+        "rgba(199, 199, 199, 0.7)",
+        "rgba(83, 102, 255, 0.7)",
+        "rgba(40, 180, 99, 0.7)",
+        "rgba(233, 78, 146, 0.7)"
       ];
+      let offsetIndex = 0;
       for (const [group, positions] of groups) {
         if (positions.length < 2) continue;
         positions.sort((a, b) => a.y - b.y);
-        const baseOffset = 20 + group % 5 * 15;
         for (let i = 0; i < positions.length - 1; i++) {
           const x1 = positions[i].x;
           const y1 = positions[i].y;
           const x2 = positions[i + 1].x;
           const y2 = positions[i + 1].y;
-          const offset = baseOffset + i * 20;
+          const maxX = Math.max(x1, x2);
+          const offset = 15 + offsetIndex * 14;
+          offsetIndex++;
+          const bendX = maxX + offset;
           lines.push({
-            d: "M " + x1 + " " + y1 + " C " + (x1 + offset) + " " + y1 + ", " + (x2 + offset) + " " + y2 + ", " + x2 + " " + y2,
+            d: "M " + x1 + " " + y1 + " L " + bendX + " " + y1 + " L " + bendX + " " + y2 + " L " + x2 + " " + y2,
             group
           });
         }

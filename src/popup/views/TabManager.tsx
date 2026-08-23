@@ -1010,35 +1010,44 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 			groups.get(pos.group)!.push({ x: pos.x, y: pos.y });
 		}
 
-		// 生成贝塞尔曲线 path（同组内按 y 坐标排序后相邻标签连线）
+		// 生成连连看风格直角折线（U形：右→下→左，最多2个拐点）
+		// 每条线用不同的偏移距离，扇形展开互不重叠
 		const lines: Array<{ d: string; group: number }> = [];
 		const colors = [
-			"rgba(255, 99, 71, 0.6)",
-			"rgba(54, 162, 235, 0.6)",
-			"rgba(255, 206, 86, 0.6)",
-			"rgba(75, 192, 192, 0.6)",
-			"rgba(153, 102, 255, 0.6)",
-			"rgba(255, 159, 64, 0.6)",
-			"rgba(199, 199, 199, 0.6)",
-			"rgba(83, 102, 255, 0.6)",
-			"rgba(40, 180, 99, 0.6)",
-			"rgba(233, 78, 146, 0.6)"
+			"rgba(255, 99, 71, 0.7)",
+			"rgba(54, 162, 235, 0.7)",
+			"rgba(255, 206, 86, 0.7)",
+			"rgba(75, 192, 192, 0.7)",
+			"rgba(153, 102, 255, 0.7)",
+			"rgba(255, 159, 64, 0.7)",
+			"rgba(199, 199, 199, 0.7)",
+			"rgba(83, 102, 255, 0.7)",
+			"rgba(40, 180, 99, 0.7)",
+			"rgba(233, 78, 146, 0.7)"
 		];
 
+		let offsetIndex = 0;
 		for (const [group, positions] of groups) {
 			if (positions.length < 2) continue;
 			// 同组内按 y 坐标排序
 			positions.sort((a, b) => a.y - b.y);
-			// 相邻标签之间画贝塞尔曲线，每条线的偏移量递增，避免线叠在一起
-			const baseOffset = 20 + (group % 5) * 15; // 不同组基线偏移不同
+			// 相邻标签之间画 U 形直角折线，每条线偏移递增
 			for (let i = 0; i < positions.length - 1; i++) {
 				const x1 = positions[i].x;
 				const y1 = positions[i].y;
 				const x2 = positions[i + 1].x;
 				const y2 = positions[i + 1].y;
-				const offset = baseOffset + i * 20; // 同组内每条线递增，扇形展开
+				// 取两个标签右边缘的最大值 + 偏移量作为折线右拐点
+				const maxX = Math.max(x1, x2);
+				const offset = 15 + offsetIndex * 14; // 每条线递增14px，扇形展开
+				offsetIndex++;
+				const bendX = maxX + offset;
+				// 连连看折线：起点→右→下→左→终点（2个拐点的U形）
 				lines.push({
-					d: "M " + x1 + " " + y1 + " C " + (x1 + offset) + " " + y1 + ", " + (x2 + offset) + " " + y2 + ", " + x2 + " " + y2,
+					d: "M " + x1 + " " + y1 +
+					   " L " + bendX + " " + y1 +
+					   " L " + bendX + " " + y2 +
+					   " L " + x2 + " " + y2,
 					group: group
 				});
 			}
