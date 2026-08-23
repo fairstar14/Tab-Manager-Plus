@@ -42,5 +42,9 @@ export interface ITabManagerState {
 	dragFavicon: string,
 	colorsActive: number,
 
+	connectLines: boolean,
+	connectLinesData: Array<{ x1: number; y1: number; x2: number; y2: number; group: number }>,
+	connectLinesColors: string[],
+
 	resetTimeout: number
 }

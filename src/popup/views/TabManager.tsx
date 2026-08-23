@@ -66,6 +66,10 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 			dragFavicon: "",
 			colorsActive: 0,
 
+			connectLines: false,
+			connectLinesData: [] as Array<{ x1: number; y1: number; x2: number; y2: number; group: number }>,
+			connectLinesColors: [] as string[],
+
 			tabCount: 0,
 			hiddenCount: 0,
 			searchLen: 0
@@ -83,6 +87,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 		this.compactText = this.compactText.bind(this);
 		this.darkText = this.darkText.bind(this);
 		this.deleteTabs = this.deleteTabs.bind(this);
+		this.drawConnectLines = this.drawConnectLines.bind(this);
 		this.discardTabs = this.discardTabs.bind(this);
 		this.exportSessions = this.exportSessions.bind(this);
 		this.exportSessionsText = this.exportSessionsText.bind(this);
@@ -106,6 +111,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 		this.toggleAnimations = this.toggleAnimations.bind(this);
 		this.toggleBadge = this.toggleBadge.bind(this);
 		this.toggleCompact = this.toggleCompact.bind(this);
+		this.toggleConnectLines = this.toggleConnectLines.bind(this);
 		this.toggleDark = this.toggleDark.bind(this);
 		this.toggleFilterMismatchedTabs = this.toggleFilterMismatchedTabs.bind(this);
 		this.toggleHide = this.toggleHide.bind(this);
@@ -402,6 +408,24 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 								);
 							}.bind(this))
 						: false}
+				{this.state.dupTabs && this.state.connectLines && this.state.connectLinesData.length > 0 && (
+					<svg className="connect-lines-overlay" ref="connectLinesSvg">
+						{this.state.connectLinesData.map((line, i) => {
+							const colorIdx = ((line.group - 1) % 10);
+							const color = this.state.connectLinesColors[colorIdx] || "rgba(128,128,128,0.5)";
+							return (
+								<line
+									key={"connectline-" + i}
+									x1={line.x1} y1={line.y1}
+									x2={line.x2} y2={line.y2}
+									stroke={color}
+									strokeWidth="2"
+									strokeDasharray="4 2"
+								/>
+							);
+						})}
+					</svg>
+				)}
 				</div>}
 				{this.state.optionsActive && <div className={"options-container"} ref="options-container">
 					<TabOptions
@@ -545,6 +569,12 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 										onClick={this.highlightDuplicates}
 										onMouseEnter={this.hoverIcon}
 									/>
+									<div
+										className={"icon windowaction connect-lines" + (this.state.connectLines ? " enabled" : "") + (this.state.dupTabs ? "" : " disabled")}
+										title="连线重复标签"
+										onClick={this.toggleConnectLines}
+										onMouseEnter={this.hoverIcon}
+									/>
 								</td>
 							</tr>
 						</tbody>
@@ -646,6 +676,14 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 
 		// box.select();
 		// box.focus();
+	}
+	async componentDidUpdate(prevProps, prevState) {
+		if (this.state.dupTabs && this.state.connectLines) {
+			if (prevState.dupGroups !== this.state.dupGroups ||
+				prevState.connectLines !== this.state.connectLines) {
+				setTimeout(() => this.drawConnectLines(), 50);
+			}
+		}
 	}
 	async sessionSync() {
 		let values = await getLocalStorage('sessions', {});
@@ -919,6 +957,82 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 			});
 		}
 		this.forceUpdate();
+		if (this.state.connectLines) {
+			setTimeout(() => this.drawConnectLines(), 100);
+		}
+	}
+	toggleConnectLines(e) {
+		if (!this.state.dupTabs) return;
+		const connectLines = !this.state.connectLines;
+		this.setState({ connectLines: connectLines });
+		// 状态更新后需要重新计算连线
+		if (connectLines) {
+			setTimeout(() => this.drawConnectLines(), 100);
+		} else {
+			this.setState({ connectLinesData: [] });
+		}
+		this.forceUpdate();
+	}
+	drawConnectLines() {
+		if (!this.state.dupTabs || !this.state.connectLines) return;
+
+		const container = this.refs.windowcontainer as HTMLDivElement;
+		if (!container) return;
+
+		const containerRect = container.getBoundingClientRect();
+
+		// 收集每个重复标签的位置和组号
+		const tabPositions = new Map<number, { x: number; y: number; group: number }>();
+		for (const [tabId, group] of this.state.dupGroups) {
+			const tabEl = container.querySelector("#tab-" + tabId) as HTMLElement;
+			if (!tabEl) continue;
+			const rect = tabEl.getBoundingClientRect();
+			tabPositions.set(tabId, {
+				x: rect.left - containerRect.left + rect.width / 2,
+				y: rect.top - containerRect.top + rect.height / 2,
+				group: group
+			});
+		}
+
+		// 按组分类
+		const groups = new Map<number, Array<{ x: number; y: number }>>();
+		for (const [tabId, pos] of tabPositions) {
+			if (!groups.has(pos.group)) {
+				groups.set(pos.group, []);
+			}
+			groups.get(pos.group)!.push({ x: pos.x, y: pos.y });
+		}
+
+		// 生成连线 path（同组内相邻标签连线）
+		const lines: Array<{ x1: number; y1: number; x2: number; y2: number; group: number }> = [];
+		const colors = [
+			"rgba(255, 99, 71, 0.6)",
+			"rgba(54, 162, 235, 0.6)",
+			"rgba(255, 206, 86, 0.6)",
+			"rgba(75, 192, 192, 0.6)",
+			"rgba(153, 102, 255, 0.6)",
+			"rgba(255, 159, 64, 0.6)",
+			"rgba(199, 199, 199, 0.6)",
+			"rgba(83, 102, 255, 0.6)",
+			"rgba(40, 180, 99, 0.6)",
+			"rgba(233, 78, 146, 0.6)"
+		];
+
+		for (const [group, positions] of groups) {
+			if (positions.length < 2) continue;
+			// 同组内按位置排序后两两连线
+			for (let i = 0; i < positions.length - 1; i++) {
+				lines.push({
+					x1: positions[i].x,
+					y1: positions[i].y,
+					x2: positions[i + 1].x,
+					y2: positions[i + 1].y,
+					group: group
+				});
+			}
+		}
+
+		this.setState({ connectLinesData: lines, connectLinesColors: colors });
 	}
 	search(e) {
 		let hiddenCount = this.state.hiddenCount || 0;

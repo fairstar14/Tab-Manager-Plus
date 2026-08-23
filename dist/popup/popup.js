@@ -7827,6 +7827,9 @@
         dupTabs: false,
         dragFavicon: "",
         colorsActive: 0,
+        connectLines: false,
+        connectLinesData: [],
+        connectLinesColors: [],
         tabCount: 0,
         hiddenCount: 0,
         searchLen: 0
@@ -7843,6 +7846,7 @@
       this.compactText = this.compactText.bind(this);
       this.darkText = this.darkText.bind(this);
       this.deleteTabs = this.deleteTabs.bind(this);
+      this.drawConnectLines = this.drawConnectLines.bind(this);
       this.discardTabs = this.discardTabs.bind(this);
       this.exportSessions = this.exportSessions.bind(this);
       this.exportSessionsText = this.exportSessionsText.bind(this);
@@ -7866,6 +7870,7 @@
       this.toggleAnimations = this.toggleAnimations.bind(this);
       this.toggleBadge = this.toggleBadge.bind(this);
       this.toggleCompact = this.toggleCompact.bind(this);
+      this.toggleConnectLines = this.toggleConnectLines.bind(this);
       this.toggleDark = this.toggleDark.bind(this);
       this.toggleFilterMismatchedTabs = this.toggleFilterMismatchedTabs.bind(this);
       this.toggleHide = this.toggleHide.bind(this);
@@ -8117,7 +8122,23 @@
               ref: "session" + window2.id
             }
           );
-        }.bind(this)) : false),
+        }.bind(this)) : false, this.state.dupTabs && this.state.connectLines && this.state.connectLinesData.length > 0 && /* @__PURE__ */ React3.createElement("svg", { className: "connect-lines-overlay", ref: "connectLinesSvg" }, this.state.connectLinesData.map((line, i) => {
+          const colorIdx = (line.group - 1) % 10;
+          const color = this.state.connectLinesColors[colorIdx] || "rgba(128,128,128,0.5)";
+          return /* @__PURE__ */ React3.createElement(
+            "line",
+            {
+              key: "connectline-" + i,
+              x1: line.x1,
+              y1: line.y1,
+              x2: line.x2,
+              y2: line.y2,
+              stroke: color,
+              strokeWidth: "2",
+              strokeDasharray: "4 2"
+            }
+          );
+        }))),
         this.state.optionsActive && /* @__PURE__ */ React3.createElement("div", { className: "options-container", ref: "options-container" }, /* @__PURE__ */ React3.createElement(
           TabOptions,
           {
@@ -8240,6 +8261,14 @@
             onClick: this.highlightDuplicates,
             onMouseEnter: this.hoverIcon
           }
+        ), /* @__PURE__ */ React3.createElement(
+          "div",
+          {
+            className: "icon windowaction connect-lines" + (this.state.connectLines ? " enabled" : "") + (this.state.dupTabs ? "" : " disabled"),
+            title: "\u8FDE\u7EBF\u91CD\u590D\u6807\u7B7E",
+            onClick: this.toggleConnectLines,
+            onMouseEnter: this.hoverIcon
+          }
         )))))),
         /* @__PURE__ */ React3.createElement("div", { className: "window placeholder" })
       );
@@ -8316,6 +8345,13 @@
           }
         }
       }, 250);
+    }
+    async componentDidUpdate(prevProps, prevState) {
+      if (this.state.dupTabs && this.state.connectLines) {
+        if (prevState.dupGroups !== this.state.dupGroups || prevState.connectLines !== this.state.connectLines) {
+          setTimeout2(() => this.drawConnectLines(), 50);
+        }
+      }
     }
     async sessionSync() {
       let values = await getLocalStorage("sessions", {});
@@ -8560,6 +8596,70 @@
         });
       }
       this.forceUpdate();
+      if (this.state.connectLines) {
+        setTimeout2(() => this.drawConnectLines(), 100);
+      }
+    }
+    toggleConnectLines(e) {
+      if (!this.state.dupTabs) return;
+      const connectLines = !this.state.connectLines;
+      this.setState({ connectLines });
+      if (connectLines) {
+        setTimeout2(() => this.drawConnectLines(), 100);
+      } else {
+        this.setState({ connectLinesData: [] });
+      }
+      this.forceUpdate();
+    }
+    drawConnectLines() {
+      if (!this.state.dupTabs || !this.state.connectLines) return;
+      const container = this.refs.windowcontainer;
+      if (!container) return;
+      const containerRect = container.getBoundingClientRect();
+      const tabPositions = /* @__PURE__ */ new Map();
+      for (const [tabId, group] of this.state.dupGroups) {
+        const tabEl = container.querySelector("#tab-" + tabId);
+        if (!tabEl) continue;
+        const rect = tabEl.getBoundingClientRect();
+        tabPositions.set(tabId, {
+          x: rect.left - containerRect.left + rect.width / 2,
+          y: rect.top - containerRect.top + rect.height / 2,
+          group
+        });
+      }
+      const groups = /* @__PURE__ */ new Map();
+      for (const [tabId, pos] of tabPositions) {
+        if (!groups.has(pos.group)) {
+          groups.set(pos.group, []);
+        }
+        groups.get(pos.group).push({ x: pos.x, y: pos.y });
+      }
+      const lines = [];
+      const colors = [
+        "rgba(255, 99, 71, 0.6)",
+        "rgba(54, 162, 235, 0.6)",
+        "rgba(255, 206, 86, 0.6)",
+        "rgba(75, 192, 192, 0.6)",
+        "rgba(153, 102, 255, 0.6)",
+        "rgba(255, 159, 64, 0.6)",
+        "rgba(199, 199, 199, 0.6)",
+        "rgba(83, 102, 255, 0.6)",
+        "rgba(40, 180, 99, 0.6)",
+        "rgba(233, 78, 146, 0.6)"
+      ];
+      for (const [group, positions] of groups) {
+        if (positions.length < 2) continue;
+        for (let i = 0; i < positions.length - 1; i++) {
+          lines.push({
+            x1: positions[i].x,
+            y1: positions[i].y,
+            x2: positions[i + 1].x,
+            y2: positions[i + 1].y,
+            group
+          });
+        }
+      }
+      this.setState({ connectLinesData: lines, connectLinesColors: colors });
     }
     search(e) {
       let hiddenCount = this.state.hiddenCount || 0;
