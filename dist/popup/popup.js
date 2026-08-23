@@ -8651,13 +8651,15 @@
       for (const [group, positions] of groups) {
         if (positions.length < 2) continue;
         positions.sort((a, b) => a.y - b.y);
+        const baseOffset = 20 + group % 5 * 15;
         for (let i = 0; i < positions.length - 1; i++) {
           const x1 = positions[i].x;
           const y1 = positions[i].y;
           const x2 = positions[i + 1].x;
           const y2 = positions[i + 1].y;
+          const offset = baseOffset + i * 20;
           lines.push({
-            d: "M " + x1 + " " + y1 + " C " + (x1 + 40) + " " + y1 + ", " + (x2 + 40) + " " + y2 + ", " + x2 + " " + y2,
+            d: "M " + x1 + " " + y1 + " C " + (x1 + offset) + " " + y1 + ", " + (x2 + offset) + " " + y2 + ", " + x2 + " " + y2,
             group
           });
         }
