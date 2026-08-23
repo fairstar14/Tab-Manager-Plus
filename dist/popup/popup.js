@@ -8651,15 +8651,8 @@
         "rgba(233, 78, 146, 0.7)"
       ];
       let offsetIndex = 0;
-      const groupOffsets = /* @__PURE__ */ new Map();
-      let groupCounter = 0;
       for (const [group, positions] of groups) {
         if (positions.length < 2) continue;
-        if (!groupOffsets.has(group)) {
-          groupOffsets.set(group, groupCounter * 30);
-          groupCounter++;
-        }
-        const groupBase = groupOffsets.get(group);
         positions.sort((a, b) => a.y - b.y);
         for (let i = 0; i < positions.length - 1; i++) {
           const x1 = positions[i].x;
@@ -8667,7 +8660,7 @@
           const x2 = positions[i + 1].x;
           const y2 = positions[i + 1].y;
           const maxX = Math.max(x1, x2);
-          const offset = 18 + groupBase + i * 22;
+          const offset = 15 + offsetIndex * 20;
           offsetIndex++;
           const bendX = maxX + offset;
           lines.push({
