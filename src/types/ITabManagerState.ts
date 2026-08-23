@@ -31,6 +31,7 @@ export interface ITabManagerState {
 
 	lastSelect: number,
 	searchLen: number,
+	searchMode: string,
 	height: number,
 	hasScrollBar: boolean,
 	focusUpdates: number,

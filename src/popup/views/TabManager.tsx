@@ -72,7 +72,8 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 
 			tabCount: 0,
 			hiddenCount: 0,
-			searchLen: 0
+			searchLen: 0,
+			searchMode: "mixed"
 		};
 
 		this.addWindow = this.addWindow.bind(this);
@@ -102,6 +103,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 		this.rateExtension = this.rateExtension.bind(this);
 		this.scrollTo = this.scrollTo.bind(this);
 		this.search = this.search.bind(this);
+		this.changeSearchMode = this.changeSearchMode.bind(this);
 		this.sessionsText = this.sessionsText.bind(this);
 		this.sessionSync = this.sessionSync.bind(this);
 		this.tabActionsText = this.tabActionsText.bind(this);
@@ -495,6 +497,11 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 						<tbody>
 							<tr>
 								<td className="one">
+									<select className="searchModeSelect" onChange={this.changeSearchMode} value={this.state.searchMode} title="搜索范围">
+										<option value="mixed">混合</option>
+										<option value="title">标题</option>
+										<option value="url">地址</option>
+									</select>
 									<input className="searchBoxInput" type="text" placeholder="输入以搜索标签页..." tabIndex={1} onChange={this.search} ref="searchbox" />
 								</td>
 								<td className="two">
@@ -1034,6 +1041,14 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 
 		this.setState({ connectLinesData: lines, connectLinesColors: colors });
 	}
+	changeSearchMode(e) {
+		this.setState({ searchMode: e.target.value });
+		// 触发一次重新搜索
+		const searchbox = this.refs.searchbox as HTMLInputElement;
+		if (searchbox && searchbox.value) {
+			searchbox.dispatchEvent(new Event('change'));
+		}
+	}
 	search(e) {
 		let hiddenCount = this.state.hiddenCount || 0;
 		const searchQuery = e.target.value || "";
@@ -1073,9 +1088,16 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 			}
 			for (const id of idList) {
 				const tab = this.state.tabsbyid.get(id);
-				let tabSearchTerm;
-				if (!!tab.title) tabSearchTerm = tab.title;
-				if (!!tab.url) tabSearchTerm += " " + tab.url;
+				let tabSearchTerm = "";
+				const mode = this.state.searchMode || "mixed";
+				if (mode === "title") {
+					if (!!tab.title) tabSearchTerm = tab.title;
+				} else if (mode === "url") {
+					if (!!tab.url) tabSearchTerm = tab.url;
+				} else {
+					if (!!tab.title) tabSearchTerm = tab.title;
+					if (!!tab.url) tabSearchTerm += " " + tab.url;
+				}
 				tabSearchTerm = tabSearchTerm.toLowerCase();
 				let match = false;
 				if(searchType === "normal") {

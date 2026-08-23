@@ -954,7 +954,7 @@ table td {
 
 /* 连线按钮图标 */
 .icon.connect-lines {
-	background-image: url(../images/connect-lines.svg);
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij4KICAgIDxjaXJjbGUgY3g9IjYiIGN5PSI2IiByPSIzIiBmaWxsPSIjNjY2IiBvcGFjaXR5PSIwLjYiLz4KICAgIDxjaXJjbGUgY3g9IjE4IiBjeT0iMTgiIHI9IjMiIGZpbGw9IiM2NjYiIG9wYWNpdHk9IjAuNiIvPgogICAgPGxpbmUgeDE9IjYiIHkxPSI2IiB4Mj0iMTgiIHkyPSIxOCIgc3Ryb2tlPSIjNjY2IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjMgMiIgb3BhY2l0eT0iMC42Ii8+Cjwvc3ZnPg==);
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -962,4 +962,16 @@ table td {
 .icon.connect-lines.disabled {
 	opacity: 0.25;
 	pointer-events: none;
+}
+
+/* 搜索模式下拉框 */
+.searchModeSelect {
+	height: 1.5rem;
+	font-size: 0.75rem;
+	margin: 0.5rem 0.25rem 0 0.25rem;
+	border: 1px solid #b2b2b2;
+	border-radius: 3px;
+	background-color: white;
+	cursor: pointer;
+	float: left;
 }

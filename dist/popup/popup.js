@@ -7832,7 +7832,8 @@
         connectLinesColors: [],
         tabCount: 0,
         hiddenCount: 0,
-        searchLen: 0
+        searchLen: 0,
+        searchMode: "mixed"
       };
       this.addWindow = this.addWindow.bind(this);
       this.animationsText = this.animationsText.bind(this);
@@ -7861,6 +7862,7 @@
       this.rateExtension = this.rateExtension.bind(this);
       this.scrollTo = this.scrollTo.bind(this);
       this.search = this.search.bind(this);
+      this.changeSearchMode = this.changeSearchMode.bind(this);
       this.sessionsText = this.sessionsText.bind(this);
       this.sessionSync = this.sessionSync.bind(this);
       this.tabActionsText = this.tabActionsText.bind(this);
@@ -8204,7 +8206,7 @@
             value: this.state.topText
           }
         ), /* @__PURE__ */ React3.createElement("input", { type: "text", disabled: true, className: "taburl", ref: "topboxurl", placeholder: this.getTip(), value: this.state.bottomText })),
-        !this.state.optionsActive && !this.state.colorsActive && /* @__PURE__ */ React3.createElement("div", { className: "window searchbox" }, /* @__PURE__ */ React3.createElement("table", null, /* @__PURE__ */ React3.createElement("tbody", null, /* @__PURE__ */ React3.createElement("tr", null, /* @__PURE__ */ React3.createElement("td", { className: "one" }, /* @__PURE__ */ React3.createElement("input", { className: "searchBoxInput", type: "text", placeholder: "\u8F93\u5165\u4EE5\u641C\u7D22\u6807\u7B7E\u9875...", tabIndex: 1, onChange: this.search, ref: "searchbox" })), /* @__PURE__ */ React3.createElement("td", { className: "two" }, /* @__PURE__ */ React3.createElement(
+        !this.state.optionsActive && !this.state.colorsActive && /* @__PURE__ */ React3.createElement("div", { className: "window searchbox" }, /* @__PURE__ */ React3.createElement("table", null, /* @__PURE__ */ React3.createElement("tbody", null, /* @__PURE__ */ React3.createElement("tr", null, /* @__PURE__ */ React3.createElement("td", { className: "one" }, /* @__PURE__ */ React3.createElement("select", { className: "searchModeSelect", onChange: this.changeSearchMode, value: this.state.searchMode, title: "\u641C\u7D22\u8303\u56F4" }, /* @__PURE__ */ React3.createElement("option", { value: "mixed" }, "\u6DF7\u5408"), /* @__PURE__ */ React3.createElement("option", { value: "title" }, "\u6807\u9898"), /* @__PURE__ */ React3.createElement("option", { value: "url" }, "\u5730\u5740")), /* @__PURE__ */ React3.createElement("input", { className: "searchBoxInput", type: "text", placeholder: "\u8F93\u5165\u4EE5\u641C\u7D22\u6807\u7B7E\u9875...", tabIndex: 1, onChange: this.search, ref: "searchbox" })), /* @__PURE__ */ React3.createElement("td", { className: "two" }, /* @__PURE__ */ React3.createElement(
           "div",
           {
             className: "icon windowaction " + this.state.layout + "-view",
@@ -8661,6 +8663,13 @@
       }
       this.setState({ connectLinesData: lines, connectLinesColors: colors });
     }
+    changeSearchMode(e) {
+      this.setState({ searchMode: e.target.value });
+      const searchbox = this.refs.searchbox;
+      if (searchbox && searchbox.value) {
+        searchbox.dispatchEvent(new Event("change"));
+      }
+    }
     search(e) {
       let hiddenCount = this.state.hiddenCount || 0;
       const searchQuery = e.target.value || "";
@@ -8700,9 +8709,16 @@
         }
         for (const id of idList) {
           const tab = this.state.tabsbyid.get(id);
-          let tabSearchTerm;
-          if (!!tab.title) tabSearchTerm = tab.title;
-          if (!!tab.url) tabSearchTerm += " " + tab.url;
+          let tabSearchTerm = "";
+          const mode = this.state.searchMode || "mixed";
+          if (mode === "title") {
+            if (!!tab.title) tabSearchTerm = tab.title;
+          } else if (mode === "url") {
+            if (!!tab.url) tabSearchTerm = tab.url;
+          } else {
+            if (!!tab.title) tabSearchTerm = tab.title;
+            if (!!tab.url) tabSearchTerm += " " + tab.url;
+          }
           tabSearchTerm = tabSearchTerm.toLowerCase();
           let match = false;
           if (searchType === "normal") {
