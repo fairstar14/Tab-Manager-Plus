@@ -8520,30 +8520,27 @@
         this.forceUpdate();
         return;
       }
+      const urlCounts = /* @__PURE__ */ new Map();
+      for (const [id, tab] of this.state.tabsbyid) {
+        if (!tab || !tab.url) continue;
+        const cleanUrl = tab.url.split("#")[0];
+        urlCounts.set(cleanUrl, (urlCounts.get(cleanUrl) || 0) + 1);
+      }
       const urlToGroup = /* @__PURE__ */ new Map();
-      const dupGroups = /* @__PURE__ */ new Map();
       let groupNum = 0;
+      for (const [url, count] of urlCounts) {
+        if (count > 1) {
+          groupNum++;
+          urlToGroup.set(url, groupNum);
+        }
+      }
+      const realDupGroups = /* @__PURE__ */ new Map();
+      let dupCount = 0;
       for (const [id, tab] of this.state.tabsbyid) {
         if (!tab || !tab.url) continue;
         const cleanUrl = tab.url.split("#")[0];
         if (urlToGroup.has(cleanUrl)) {
-          const g = urlToGroup.get(cleanUrl);
-          dupGroups.set(id, g);
-        } else {
-          groupNum++;
-          urlToGroup.set(cleanUrl, groupNum);
-          dupGroups.set(id, groupNum);
-        }
-      }
-      const groupCounts = /* @__PURE__ */ new Map();
-      for (const g of dupGroups.values()) {
-        groupCounts.set(g, (groupCounts.get(g) || 0) + 1);
-      }
-      const realDupGroups = /* @__PURE__ */ new Map();
-      let dupCount = 0;
-      for (const [id, g] of dupGroups) {
-        if ((groupCounts.get(g) || 0) > 1) {
-          realDupGroups.set(id, g);
+          realDupGroups.set(id, urlToGroup.get(cleanUrl));
           dupCount++;
         }
       }

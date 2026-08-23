@@ -873,35 +873,32 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 			return;
 		}
 
-		// O(n) 分组：url(去#hash) → 组号
-		const urlToGroup = new Map<string, number>();
-		const dupGroups = new Map<number, number>();
-		let groupNum = 0;
-
+		// 第一轮：统计每个 URL(去#hash) 出现次数
+		const urlCounts = new Map<string, number>();
 		for (const [id, tab] of this.state.tabsbyid) {
 			if (!tab || !tab.url) continue;
-			// 去掉 #hash
 			const cleanUrl = tab.url.split("#")[0];
-			if (urlToGroup.has(cleanUrl)) {
-				const g = urlToGroup.get(cleanUrl)!;
-				dupGroups.set(id, g);
-			} else {
+			urlCounts.set(cleanUrl, (urlCounts.get(cleanUrl) || 0) + 1);
+		}
+
+		// 第二轮：只给出现 >1 次的 URL 从 1 连续编号
+		const urlToGroup = new Map<string, number>();
+		let groupNum = 0;
+		for (const [url, count] of urlCounts) {
+			if (count > 1) {
 				groupNum++;
-				urlToGroup.set(cleanUrl, groupNum);
-				dupGroups.set(id, groupNum);
+				urlToGroup.set(url, groupNum);
 			}
 		}
 
-		// 只保留出现 >1 次的组（真正的重复）
-		const groupCounts = new Map<number, number>();
-		for (const g of dupGroups.values()) {
-			groupCounts.set(g, (groupCounts.get(g) || 0) + 1);
-		}
+		// 第三轮：给每个重复标签分配组号
 		const realDupGroups = new Map<number, number>();
 		let dupCount = 0;
-		for (const [id, g] of dupGroups) {
-			if ((groupCounts.get(g) || 0) > 1) {
-				realDupGroups.set(id, g);
+		for (const [id, tab] of this.state.tabsbyid) {
+			if (!tab || !tab.url) continue;
+			const cleanUrl = tab.url.split("#")[0];
+			if (urlToGroup.has(cleanUrl)) {
+				realDupGroups.set(id, urlToGroup.get(cleanUrl)!);
 				dupCount++;
 			}
 		}
