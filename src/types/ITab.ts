@@ -8,6 +8,7 @@ export interface ITab {
 	session?: ISavedSession,
 	selected: boolean,
 	hidden: boolean,
+	dupGroup?: number,
 	id: string,
 
 	searchActive: boolean,

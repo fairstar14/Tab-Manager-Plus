@@ -50,6 +50,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 			selection: new Set(),
 			lastSelect: 0,
 			hiddenTabs: new Set(),
+			dupGroups: new Map(),
 			tabsbyid: new Map(),
 			windowsbyid: new Map(),
 			resetTimeout: resetTimeout,
@@ -304,6 +305,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 								tabactions={_this.state.tabactions}
 								hiddenTabs={_this.state.hiddenTabs}
 								filterTabs={_this.state.filterTabs}
+								dupGroups={_this.state.dupGroups}
 								hoverHandler={_this.hoverHandler.bind(_this)}
 								scrollTo={_this.scrollTo.bind(_this)}
 								hoverIcon={_this.hoverIcon.bind(_this)}
@@ -344,6 +346,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 								tabactions={_this.state.tabactions}
 								hiddenTabs={_this.state.hiddenTabs}
 								filterTabs={_this.state.filterTabs}
+								dupGroups={_this.state.dupGroups}
 								hoverHandler={_this.hoverHandler.bind(_this)}
 								scrollTo={_this.scrollTo.bind(_this)}
 								hoverIcon={_this.hoverIcon.bind(_this)}
@@ -858,75 +861,70 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	highlightDuplicates(e) {
 		this.state.selection.clear();
-		this.state.hiddenTabs.clear();
-
-		let searchLen = 0;
+		// 不再清 hiddenTabs，不隐藏非重复
 		const dupTabs = !this.state.dupTabs;
 
 		(this.refs.searchbox as HTMLInputElement).value = "";
 
 		if (!dupTabs) {
 			this.setState({
-				hiddenCount: 0,
 				dupTabs: dupTabs,
-				searchLen: searchLen
+				dupGroups: new Map(),
+				searchLen: 0,
+				hiddenCount: 0
 			});
 			this.forceUpdate();
 			return;
 		}
-		let hiddenCount = this.state.hiddenCount || 0;
-		const idList : number[] = [...this.state.tabsbyid.keys()];
-		const dup = [];
-		for (const id of idList) {
-			var tab = this.state.tabsbyid.get(id);
-			for (const id2 of idList) {
-				if (id === id2) continue;
-				var tab2 = this.state.tabsbyid.get(id2);
-				if (tab.url === tab2.url) {
-					dup.push(id);
-					break;
-				}
+
+		// O(n) 分组：url(去#hash) → 组号
+		const urlToGroup = new Map<string, number>();
+		const dupGroups = new Map<number, number>();
+		let groupNum = 0;
+
+		for (const [id, tab] of this.state.tabsbyid) {
+			if (!tab || !tab.url) continue;
+			// 去掉 #hash
+			const cleanUrl = tab.url.split("#")[0];
+			if (urlToGroup.has(cleanUrl)) {
+				const g = urlToGroup.get(cleanUrl)!;
+				dupGroups.set(id, g);
+			} else {
+				groupNum++;
+				urlToGroup.set(cleanUrl, groupNum);
+				dupGroups.set(id, groupNum);
 			}
 		}
-		for (const dupItem of dup) {
-			searchLen++;
-			hiddenCount -= this.state.hiddenTabs.has(dupItem) ? 1 : 0;
-			this.state.selection.add(dupItem);
-			this.state.hiddenTabs.delete(dupItem);
-			this.setState({
-				lastSelect: dupItem
-			});
+
+		// 只保留出现 >1 次的组（真正的重复）
+		const groupCounts = new Map<number, number>();
+		for (const g of dupGroups.values()) {
+			groupCounts.set(g, (groupCounts.get(g) || 0) + 1);
 		}
-		for (const tab_id of idList) {
-			// var tab = this.state.tabsbyid.get(tab_id);
-			if (dup.indexOf(tab_id) === -1) {
-				hiddenCount += 1 - (this.state.hiddenTabs.has(tab_id) ? 1 : 0);
-				this.state.hiddenTabs.add(tab_id);
-				this.state.selection.delete(tab_id);
-				this.setState({
-					lastSelect: tab_id
-				});
+		const realDupGroups = new Map<number, number>();
+		let dupCount = 0;
+		for (const [id, g] of dupGroups) {
+			if ((groupCounts.get(g) || 0) > 1) {
+				realDupGroups.set(id, g);
+				dupCount++;
 			}
 		}
-		if (dup.length === 0) {
+
+		if (dupCount === 0) {
 			this.setState({
 				topText: "未找到重复标签",
-				bottomText: " "
+				bottomText: " ",
+				dupTabs: dupTabs,
+				dupGroups: new Map()
 			});
 		} else {
 			this.setState({
-				topText: "已高亮 " + dup.length + " 个重复标签",
-				bottomText: "按回车键将它们移到新窗口"
+				topText: "已高亮 " + dupCount + " 个重复标签",
+				bottomText: "按回车键将它们移到新窗口",
+				dupTabs: dupTabs,
+				dupGroups: realDupGroups
 			});
 		}
-		this.setState({
-			hiddenCount: hiddenCount
-		});
-		this.setState({
-			searchLen: searchLen,
-			dupTabs: dupTabs
-		});
-
 		this.forceUpdate();
 	}
 	search(e) {

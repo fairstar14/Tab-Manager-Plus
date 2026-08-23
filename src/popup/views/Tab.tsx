@@ -70,6 +70,7 @@ export class Tab extends React.Component<ITab, ITabState> {
 			);
 		}
 
+		var dupGroup = this.props.dupGroup || 0;
 		var tabDom = {
 			className:
 				"icon tab " +
@@ -84,6 +85,7 @@ export class Tab extends React.Component<ITab, ITabState> {
 				(this.props.tab.incognito ? "incognito " : "") +
 				(this.state.draggingOver) +
 				(this.props.searchActive ? "search-active " : "") +
+				(dupGroup > 0 ? "dup-group-" + (((dupGroup - 1) % 20) + 1) + " " : "") +
 				" tab-" +
 				this.props.tab.id +
 				" " +
@@ -114,6 +116,7 @@ export class Tab extends React.Component<ITab, ITabState> {
 		return (
 			<div {...tabDom}>
 				{children}
+				{dupGroup > 0 ? <div key={"dup-badge-" + this.props.tab.id} className="dup-badge">{dupGroup}</div> : false}
 				<div className="limiter" />
 			</div>
 		);

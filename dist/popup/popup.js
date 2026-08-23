@@ -7617,8 +7617,9 @@
           /* @__PURE__ */ React2.createElement("div", { key: "tab-title-" + this.props.tab.id, className: "tabtitle" }, this.props.tab.title || "")
         );
       }
+      var dupGroup = this.props.dupGroup || 0;
       var tabDom = {
-        className: "icon tab " + (this.props.selected ? "selected " : "") + (this.props.tab.pinned ? "pinned " : "") + (this.props.tab.highlighted ? "highlighted " : "") + (this.props.hidden ? "hidden " : "") + (this.props.tab.mutedInfo && this.props.tab.mutedInfo.muted ? "muted " : "") + (this.props.tab.audible ? "audible " : "") + (this.props.tab.discarded ? "discarded " : "") + (this.props.layout === "vertical" ? "full " : "") + (this.props.tab.incognito ? "incognito " : "") + this.state.draggingOver + (this.props.searchActive ? "search-active " : "") + " tab-" + this.props.tab.id + " " + (this.props.layout === "vertical" ? "vertical " : "blocks "),
+        className: "icon tab " + (this.props.selected ? "selected " : "") + (this.props.tab.pinned ? "pinned " : "") + (this.props.tab.highlighted ? "highlighted " : "") + (this.props.hidden ? "hidden " : "") + (this.props.tab.mutedInfo && this.props.tab.mutedInfo.muted ? "muted " : "") + (this.props.tab.audible ? "audible " : "") + (this.props.tab.discarded ? "discarded " : "") + (this.props.layout === "vertical" ? "full " : "") + (this.props.tab.incognito ? "incognito " : "") + this.state.draggingOver + (this.props.searchActive ? "search-active " : "") + (dupGroup > 0 ? "dup-group-" + ((dupGroup - 1) % 20 + 1) + " " : "") + " tab-" + this.props.tab.id + " " + (this.props.layout === "vertical" ? "vertical " : "blocks "),
         style: this.props.layout === "vertical" ? {} : { backgroundImage: !!this.state.favIcon ? "url(" + this.state.favIcon + ")" : "" },
         id: this.props.id,
         title: this.props.tab.title,
@@ -7635,7 +7636,7 @@
         tabDom["onDrop"] = this.drop;
         tabDom["draggable"] = "true";
       }
-      return /* @__PURE__ */ React2.createElement("div", { ...tabDom }, children, /* @__PURE__ */ React2.createElement("div", { className: "limiter" }));
+      return /* @__PURE__ */ React2.createElement("div", { ...tabDom }, children, dupGroup > 0 ? /* @__PURE__ */ React2.createElement("div", { key: "dup-badge-" + this.props.tab.id, className: "dup-badge" }, dupGroup) : false, /* @__PURE__ */ React2.createElement("div", { className: "limiter" }));
     }
     onHover(e) {
       this.setState({ hovered: true });
@@ -7811,6 +7812,7 @@
         selection: /* @__PURE__ */ new Set(),
         lastSelect: 0,
         hiddenTabs: /* @__PURE__ */ new Set(),
+        dupGroups: /* @__PURE__ */ new Map(),
         tabsbyid: /* @__PURE__ */ new Map(),
         windowsbyid: /* @__PURE__ */ new Map(),
         resetTimeout,
@@ -8031,6 +8033,7 @@
               tabactions: _this.state.tabactions,
               hiddenTabs: _this.state.hiddenTabs,
               filterTabs: _this.state.filterTabs,
+              dupGroups: _this.state.dupGroups,
               hoverHandler: _this.hoverHandler.bind(_this),
               scrollTo: _this.scrollTo.bind(_this),
               hoverIcon: _this.hoverIcon.bind(_this),
@@ -8066,6 +8069,7 @@
               tabactions: _this.state.tabactions,
               hiddenTabs: _this.state.hiddenTabs,
               filterTabs: _this.state.filterTabs,
+              dupGroups: _this.state.dupGroups,
               hoverHandler: _this.hoverHandler.bind(_this),
               scrollTo: _this.scrollTo.bind(_this),
               hoverIcon: _this.hoverIcon.bind(_this),
@@ -8507,70 +8511,60 @@
     }
     highlightDuplicates(e) {
       this.state.selection.clear();
-      this.state.hiddenTabs.clear();
-      let searchLen = 0;
       const dupTabs = !this.state.dupTabs;
       this.refs.searchbox.value = "";
       if (!dupTabs) {
         this.setState({
-          hiddenCount: 0,
           dupTabs,
-          searchLen
+          dupGroups: /* @__PURE__ */ new Map(),
+          searchLen: 0,
+          hiddenCount: 0
         });
         this.forceUpdate();
         return;
       }
-      let hiddenCount = this.state.hiddenCount || 0;
-      const idList = [...this.state.tabsbyid.keys()];
-      const dup = [];
-      for (const id of idList) {
-        var tab = this.state.tabsbyid.get(id);
-        for (const id2 of idList) {
-          if (id === id2) continue;
-          var tab2 = this.state.tabsbyid.get(id2);
-          if (tab.url === tab2.url) {
-            dup.push(id);
-            break;
-          }
+      const urlToGroup = /* @__PURE__ */ new Map();
+      const dupGroups = /* @__PURE__ */ new Map();
+      let groupNum = 0;
+      for (const [id, tab] of this.state.tabsbyid) {
+        if (!tab || !tab.url) continue;
+        const cleanUrl = tab.url.split("#")[0];
+        if (urlToGroup.has(cleanUrl)) {
+          const g = urlToGroup.get(cleanUrl);
+          dupGroups.set(id, g);
+        } else {
+          groupNum++;
+          urlToGroup.set(cleanUrl, groupNum);
+          dupGroups.set(id, groupNum);
         }
       }
-      for (const dupItem of dup) {
-        searchLen++;
-        hiddenCount -= this.state.hiddenTabs.has(dupItem) ? 1 : 0;
-        this.state.selection.add(dupItem);
-        this.state.hiddenTabs.delete(dupItem);
-        this.setState({
-          lastSelect: dupItem
-        });
+      const groupCounts = /* @__PURE__ */ new Map();
+      for (const g of dupGroups.values()) {
+        groupCounts.set(g, (groupCounts.get(g) || 0) + 1);
       }
-      for (const tab_id of idList) {
-        if (dup.indexOf(tab_id) === -1) {
-          hiddenCount += 1 - (this.state.hiddenTabs.has(tab_id) ? 1 : 0);
-          this.state.hiddenTabs.add(tab_id);
-          this.state.selection.delete(tab_id);
-          this.setState({
-            lastSelect: tab_id
-          });
+      const realDupGroups = /* @__PURE__ */ new Map();
+      let dupCount = 0;
+      for (const [id, g] of dupGroups) {
+        if ((groupCounts.get(g) || 0) > 1) {
+          realDupGroups.set(id, g);
+          dupCount++;
         }
       }
-      if (dup.length === 0) {
+      if (dupCount === 0) {
         this.setState({
           topText: "\u672A\u627E\u5230\u91CD\u590D\u6807\u7B7E",
-          bottomText: " "
+          bottomText: " ",
+          dupTabs,
+          dupGroups: /* @__PURE__ */ new Map()
         });
       } else {
         this.setState({
-          topText: "\u5DF2\u9AD8\u4EAE " + dup.length + " \u4E2A\u91CD\u590D\u6807\u7B7E",
-          bottomText: "\u6309\u56DE\u8F66\u952E\u5C06\u5B83\u4EEC\u79FB\u5230\u65B0\u7A97\u53E3"
+          topText: "\u5DF2\u9AD8\u4EAE " + dupCount + " \u4E2A\u91CD\u590D\u6807\u7B7E",
+          bottomText: "\u6309\u56DE\u8F66\u952E\u5C06\u5B83\u4EEC\u79FB\u5230\u65B0\u7A97\u53E3",
+          dupTabs,
+          dupGroups: realDupGroups
         });
       }
-      this.setState({
-        hiddenCount
-      });
-      this.setState({
-        searchLen,
-        dupTabs
-      });
       this.forceUpdate();
     }
     search(e) {
@@ -9842,6 +9836,7 @@
             tab,
             selected: isSelected,
             hidden: isHidden,
+            dupGroup: (_this.props.dupGroups ? _this.props.dupGroups.get(tab.id) : 0) || 0,
             middleClick: _this.props.tabMiddleClick,
             hoverHandler: _this.props.hoverHandler,
             searchActive: _this.props.searchActive,

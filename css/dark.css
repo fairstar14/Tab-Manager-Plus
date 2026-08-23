@@ -151,3 +151,15 @@ body.dark a {
 body.dark .editName:hover {
 	background-color: #444;
 }
+/* 暗黑模式分组高亮（加深透明度） */
+body.dark .tab.dup-group-1 { background-color: rgba(255, 99, 71, 0.2); }
+body.dark .tab.dup-group-2 { background-color: rgba(54, 162, 235, 0.2); }
+body.dark .tab.dup-group-3 { background-color: rgba(255, 206, 86, 0.2); }
+body.dark .tab.dup-group-4 { background-color: rgba(75, 192, 192, 0.2); }
+body.dark .tab.dup-group-5 { background-color: rgba(153, 102, 255, 0.2); }
+body.dark .tab.dup-group-6 { background-color: rgba(255, 159, 64, 0.2); }
+body.dark .tab.dup-group-7 { background-color: rgba(199, 199, 199, 0.2); }
+body.dark .tab.dup-group-8 { background-color: rgba(83, 102, 255, 0.2); }
+body.dark .tab.dup-group-9 { background-color: rgba(40, 180, 99, 0.2); }
+body.dark .tab.dup-group-10 { background-color: rgba(233, 78, 146, 0.2); }
+body.dark .tab .dup-badge { background: rgba(255, 255, 255, 0.8); color: black; }

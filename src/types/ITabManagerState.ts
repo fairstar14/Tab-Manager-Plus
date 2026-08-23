@@ -25,6 +25,7 @@ export interface ITabManagerState {
 	sessions: ISavedSession[],
 	selection: Set<number>,
 	hiddenTabs: Set<number>,
+	dupGroups: Map<number, number>,
 	tabsbyid: Map<number, browser.Tabs.Tab>,
 	windowsbyid: Map<number, browser.Windows.Window>,
 

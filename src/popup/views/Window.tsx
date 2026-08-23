@@ -204,6 +204,7 @@ export class Window extends React.Component<IWindow, IWindowState> {
 					tab={tab}
 					selected={isSelected}
 					hidden={isHidden}
+					dupGroup={(_this.props.dupGroups ? _this.props.dupGroups.get(tab.id) : 0) || 0}
 					middleClick={_this.props.tabMiddleClick}
 					hoverHandler={_this.props.hoverHandler}
 					searchActive={_this.props.searchActive}
