@@ -7619,7 +7619,7 @@
       }
       var dupGroup = this.props.dupGroup || 0;
       var tabDom = {
-        className: "icon tab " + (this.props.selected ? "selected " : "") + (this.props.tab.pinned ? "pinned " : "") + (this.props.tab.highlighted ? "highlighted " : "") + (this.props.hidden ? "hidden " : "") + (this.props.tab.mutedInfo && this.props.tab.mutedInfo.muted ? "muted " : "") + (this.props.tab.audible ? "audible " : "") + (this.props.tab.discarded ? "discarded " : "") + (this.props.layout === "vertical" ? "full " : "") + (this.props.tab.incognito ? "incognito " : "") + this.state.draggingOver + (this.props.searchActive ? "search-active " : "") + (dupGroup > 0 ? "dup-group-" + ((dupGroup - 1) % 20 + 1) + " " : "") + " tab-" + this.props.tab.id + " " + (this.props.layout === "vertical" ? "vertical " : "blocks "),
+        className: "icon tab " + (this.props.selected ? "selected " : "") + (this.props.tab.pinned ? "pinned " : "") + (this.props.tab.highlighted ? "highlighted " : "") + (this.props.hidden ? "hidden " : "") + (this.props.tab.mutedInfo && this.props.tab.mutedInfo.muted ? "muted " : "") + (this.props.tab.audible ? "audible " : "") + (this.props.tab.discarded ? "discarded " : "") + (this.props.layout === "vertical" ? "full " : "") + (this.props.tab.incognito ? "incognito " : "") + this.state.draggingOver + (this.props.searchActive ? "search-active " : "") + (dupGroup > 0 ? "dup-group-" + ((dupGroup - 1) % 20 + 1) + " " : "") + (dupGroup > 0 ? "dup-highlighted " : "") + (this.props.dupDimmed ? "dup-dimmed " : "") + " tab-" + this.props.tab.id + " " + (this.props.layout === "vertical" ? "vertical " : "blocks "),
         style: this.props.layout === "vertical" ? {} : { backgroundImage: !!this.state.favIcon ? "url(" + this.state.favIcon + ")" : "" },
         id: this.props.id,
         title: this.props.tab.title,
@@ -8033,6 +8033,7 @@
               hiddenTabs: _this.state.hiddenTabs,
               filterTabs: _this.state.filterTabs,
               dupGroups: _this.state.dupGroups,
+              dupTabs: _this.state.dupTabs,
               hoverHandler: _this.hoverHandler.bind(_this),
               scrollTo: _this.scrollTo.bind(_this),
               hoverIcon: _this.hoverIcon.bind(_this),
@@ -8069,6 +8070,7 @@
               hiddenTabs: _this.state.hiddenTabs,
               filterTabs: _this.state.filterTabs,
               dupGroups: _this.state.dupGroups,
+              dupTabs: _this.state.dupTabs,
               hoverHandler: _this.hoverHandler.bind(_this),
               scrollTo: _this.scrollTo.bind(_this),
               hoverIcon: _this.hoverIcon.bind(_this),
@@ -9832,6 +9834,7 @@
             selected: isSelected,
             hidden: isHidden,
             dupGroup: (_this.props.dupGroups ? _this.props.dupGroups.get(tab.id) : 0) || 0,
+            dupDimmed: _this.props.dupTabs && !((_this.props.dupGroups ? _this.props.dupGroups.get(tab.id) : 0) > 0),
             middleClick: _this.props.tabMiddleClick,
             hoverHandler: _this.props.hoverHandler,
             searchActive: _this.props.searchActive,

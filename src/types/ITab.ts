@@ -9,6 +9,7 @@ export interface ITab {
 	selected: boolean,
 	hidden: boolean,
 	dupGroup?: number,
+	dupDimmed?: boolean,
 	id: string,
 
 	searchActive: boolean,

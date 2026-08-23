@@ -15,6 +15,7 @@ export interface IWindow {
 	selection: Set<number>,
 	filterTabs: boolean,
 	dupGroups?: Map<number, number>,
+	dupTabs?: boolean,
 	lastOpenWindow: number,
 	incognito: boolean,
 	draggable: boolean,

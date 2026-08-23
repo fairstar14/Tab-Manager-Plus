@@ -86,6 +86,8 @@ export class Tab extends React.Component<ITab, ITabState> {
 				(this.state.draggingOver) +
 				(this.props.searchActive ? "search-active " : "") +
 				(dupGroup > 0 ? "dup-group-" + (((dupGroup - 1) % 20) + 1) + " " : "") +
+				(dupGroup > 0 ? "dup-highlighted " : "") +
+				(this.props.dupDimmed ? "dup-dimmed " : "") +
 				" tab-" +
 				this.props.tab.id +
 				" " +

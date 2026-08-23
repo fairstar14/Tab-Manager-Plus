@@ -305,6 +305,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 								hiddenTabs={_this.state.hiddenTabs}
 								filterTabs={_this.state.filterTabs}
 								dupGroups={_this.state.dupGroups}
+				dupTabs={_this.state.dupTabs}
 								hoverHandler={_this.hoverHandler.bind(_this)}
 								scrollTo={_this.scrollTo.bind(_this)}
 								hoverIcon={_this.hoverIcon.bind(_this)}
@@ -346,6 +347,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 								hiddenTabs={_this.state.hiddenTabs}
 								filterTabs={_this.state.filterTabs}
 								dupGroups={_this.state.dupGroups}
+				dupTabs={_this.state.dupTabs}
 								hoverHandler={_this.hoverHandler.bind(_this)}
 								scrollTo={_this.scrollTo.bind(_this)}
 								hoverIcon={_this.hoverIcon.bind(_this)}
