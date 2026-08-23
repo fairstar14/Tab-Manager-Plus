@@ -42,7 +42,7 @@ export function stringHashcode(string) : number {
 	return hash;
 }
 
-export function maybePluralize(count, noun, suffix = 's') {
+export function maybePluralize(count, noun, suffix = '') {
 	return `${count} ${noun}${count !== 1 ? suffix : ''}`;
 }
 

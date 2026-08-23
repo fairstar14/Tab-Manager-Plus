@@ -9,14 +9,14 @@ export async function setupContextMenus() {
 
 	browser.contextMenus.create({
 		id: S.open_in_own_tab,
-		title: "📔 Open in own tab",
+		title: "📔 在独立标签页打开",
 		contexts: ["action"]
 	});
 
 	if (!!browser.action.openPopup) {
 		browser.contextMenus.create({
 			id: S.open_popup,
-			title: "📑 Open popup",
+			title: "📑 打开弹窗",
 			contexts: ["action"]
 		});
 	}
@@ -24,7 +24,7 @@ export async function setupContextMenus() {
 	if (!!browser.sidebarAction) {
 		browser.contextMenus.create({
 			id: S.open_sidebar,
-			title: "🗂 Open sidebar",
+			title: "🗂 打开侧边栏",
 			contexts: ["action"]
 		});
 	}
@@ -36,76 +36,76 @@ export async function setupContextMenus() {
 	});
 
 	browser.contextMenus.create({
-		title: "😍 Support this extension",
+		title: "😍 支持此扩展",
 		id: S.support_menu,
 		"contexts": ["action"]
 	});
 
 	browser.contextMenus.create({
 		id: S.review,
-		title: "⭐ Leave a review",
+		title: "⭐ 评价",
 		"contexts": ["action"],
 		parentId: "support_menu"
 	});
 
 	browser.contextMenus.create({
 		id: S.donate,
-		title: "☕ Donate to keep Extensions Alive",
+		title: "☕ 赞助支持扩展开发",
 		"contexts": ["action"],
 		parentId: "support_menu"
 	});
 
 	browser.contextMenus.create({
 		id: S.patron,
-		title: "💰 Become a Patron",
+		title: "💰 成为赞助者",
 		"contexts": ["action"],
 		parentId: "support_menu"
 	});
 
 	browser.contextMenus.create({
 		id: S.twitter,
-		title: "🐦 Follow on Twitter",
+		title: "🐦 在 Twitter 上关注",
 		"contexts": ["action"],
 		parentId: "support_menu"
 	});
 
 	browser.contextMenus.create({
-		title: "🤔 Issues and Suggestions",
+		title: "🤔 问题与建议",
 		id: S.code_menu,
 		"contexts": ["action"]
 	});
 
 	browser.contextMenus.create({
 		id: S.changelog,
-		title: "🆕 View recent changes",
+		title: "🆕 查看最近更新",
 		"contexts": ["action"],
 		parentId: "code_menu"
 	});
 
 	browser.contextMenus.create({
 		id: S.options,
-		title: "⚙ Edit Options",
+		title: "⚙ 编辑选项",
 		"contexts": ["action"],
 		parentId: "code_menu"
 	});
 
 	browser.contextMenus.create({
 		id: S.source,
-		title: "💻 View source code",
+		title: "💻 查看源码",
 		"contexts": ["action"],
 		parentId: "code_menu"
 	});
 
 	browser.contextMenus.create({
 		id: S.report,
-		title: "🤔 Report an issue",
+		title: "🤔 报告问题",
 		"contexts": ["action"],
 		parentId: "code_menu"
 	});
 
 	browser.contextMenus.create({
 		id: S.send,
-		title: "💡 Send a suggestion",
+		title: "💡 发送建议",
 		"contexts": ["action"],
 		parentId: "code_menu"
 	});

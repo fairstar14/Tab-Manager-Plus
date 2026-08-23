@@ -325,7 +325,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 					}.bind(this))}
 					<div className={"hrCont " + (!haveMin ? "hidden" : "")}>
 						<div className="hrDiv">
-							<span className="hrSpan">Minimized windows</span>
+							<span className="hrSpan">已最小化的窗口</span>
 						</div>
 					</div>
 					{this.state.windows.map(function(window) {
@@ -365,7 +365,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 					}.bind(this))}
 					<div className={"hrCont " + (!haveSess ? "hidden" : "")}>
 						<div className="hrDiv">
-							<span className="hrSpan">Saved windows</span>
+							<span className="hrSpan">已保存的窗口</span>
 						</div>
 					</div>
 					{haveSess
@@ -445,20 +445,20 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 					/>
 				</div>}
 				<div className="window top" ref="tophover">
-					<div className="icon windowaction donate" title="Donate a Coffee" onClick={this.donate} onMouseEnter={this.hoverIcon} />
+					<div className="icon windowaction donate" title="赞助" onClick={this.donate} onMouseEnter={this.hoverIcon} />
 					<div
 						className="icon windowaction rate"
-						title="Rate Tab Manager Plus"
+						title="评价 Tab Manager Plus"
 						onClick={this.rateExtension}
 						onMouseEnter={this.hoverIcon}
 					/>
-					<div className="icon windowaction options" title="Options" onClick={this.toggleOptions} onMouseEnter={this.hoverIcon} />
+					<div className="icon windowaction options" title="选项" onClick={this.toggleOptions} onMouseEnter={this.hoverIcon} />
 					<input
 						type="text"
 						disabled={true}
 						className="tabtitle"
 						ref="topbox"
-						placeholder={maybePluralize(tabCount, 'tab') + " in " + maybePluralize(this.state.windows.length, 'window')}
+						placeholder={maybePluralize(tabCount, '个标签') + "，" + maybePluralize(this.state.windows.length, '个窗口')}
 						value={this.state.topText}
 					/>
 					<input type="text" disabled={true} className="taburl" ref="topboxurl" placeholder={this.getTip()} value={this.state.bottomText} />
@@ -468,12 +468,12 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 						<tbody>
 							<tr>
 								<td className="one">
-									<input className="searchBoxInput" type="text" placeholder="Start typing to search tabs..." tabIndex={1} onChange={this.search} ref="searchbox" />
+									<input className="searchBoxInput" type="text" placeholder="输入以搜索标签页..." tabIndex={1} onChange={this.search} ref="searchbox" />
 								</td>
 								<td className="two">
 									<div
 										className={"icon windowaction " + this.state.layout + "-view"}
-										title={"Change to " + this.readablelayout(this.nextlayout()) + " View"}
+										title={"切换到 " + this.readablelayout(this.nextlayout()) + " 视图"}
 										onClick={this.changelayout}
 										onMouseEnter={this.hoverIcon}
 									/>
@@ -481,8 +481,8 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 										className="icon windowaction trash"
 										title={
 											this.state.selection.size > 0
-												? "Close selected tabs\nWill close " + maybePluralize(this.state.selection.size, 'tab')
-												: "Close current Tab"
+												? "关闭选中标签\n将关闭 " + maybePluralize(this.state.selection.size, '个标签')
+												: "关闭当前标签"
 										}
 										onClick={this.deleteTabs}
 										onMouseEnter={this.hoverIcon}
@@ -491,8 +491,8 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 										className="icon windowaction discard"
 										title={
 											this.state.selection.size > 0
-												? "Discard selected tabs\nWill discard " + maybePluralize(this.state.selection.size, 'tab') + " - freeing memory"
-												: "Select tabs to discard them and free memory"
+												? "挂起选中标签\n将挂起 " + maybePluralize(this.state.selection.size, '个标签') + " - 释放内存"
+												: "选中标签以挂起并释放内存"
 										}
 										style={
 											this.state.selection.size > 0
@@ -506,8 +506,8 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 										className="icon windowaction pin"
 										title={
 											this.state.selection.size > 0
-												? "Pin selected tabs\nWill pin " + maybePluralize(this.state.selection.size, 'tab')
-												: "Pin current Tab"
+												? "固定选中标签\n将固定 " + maybePluralize(this.state.selection.size, '个标签')
+												: "固定当前标签"
 										}
 										onClick={this.pinTabs}
 										onMouseEnter={this.hoverIcon}
@@ -515,12 +515,12 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 									<div
 										className={"icon windowaction filter" + (this.state.filterTabs ? " enabled" : "")}
 										title={
-											(this.state.filterTabs ? "Turn off hiding of" : "Hide") +
-											" tabs that do not match search" +
+											(this.state.filterTabs ? "停止隐藏" : "隐藏") +
+											"不匹配搜索的标签" +
 											(this.state.searchLen > 0
 												? "\n" +
-													(this.state.filterTabs ? "Will reveal " : "Will hide ") +
-													maybePluralize((this.state.tabsbyid.size - this.state.selection.size), 'tab')
+													(this.state.filterTabs ? "将显示 " : "将隐藏 ") +
+													maybePluralize((this.state.tabsbyid.size - this.state.selection.size), '个标签')
 												: "")
 										}
 										onClick={this.toggleFilterMismatchedTabs}
@@ -530,15 +530,15 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 										className="icon windowaction new"
 										title={
 											this.state.selection.size > 0
-												? "Move tabs to new window\nWill move " + maybePluralize(this.state.selection.size, 'selected tab') + " to it"
-												: "Open new empty window"
+												? "将标签移到新窗口\n将移动 " + maybePluralize(this.state.selection.size, '个选中标签') + " 到新窗口"
+												: "打开空白窗口"
 										}
 										onClick={this.addWindow}
 										onMouseEnter={this.hoverIcon}
 									/>
 									<div
 										className={"icon windowaction duplicates" + (this.state.dupTabs ? " enabled" : "")}
-										title="Highlight Duplicates"
+										title="高亮重复标签"
 										onClick={this.highlightDuplicates}
 										onMouseEnter={this.hoverIcon}
 									/>
@@ -910,13 +910,13 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 		}
 		if (dup.length === 0) {
 			this.setState({
-				topText: "No duplicates found",
+				topText: "未找到重复标签",
 				bottomText: " "
 			});
 		} else {
 			this.setState({
-				topText: "Highlighted " + dup.length + " duplicate tabs",
-				bottomText: "Press enter to move them to a new window"
+				topText: "已高亮 " + dup.length + " 个重复标签",
+				bottomText: "按回车键将它们移到新窗口"
 			});
 		}
 		this.setState({
@@ -1020,7 +1020,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 		// var matchtext = "";
 		if (matches === 0 && searchLen > 0) {
 			this.setState({
-				topText: "No matches for '" + searchQuery + "'",
+				topText: "未找到匹配 '" + searchQuery + "' 的标签",
 				bottomText: ""
 			});
 		} else if (matches === 0) {
@@ -1030,13 +1030,13 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 			});
 		} else if (matches > 1) {
 			this.setState({
-				topText: this.state.selection.size + " matches for '" + searchQuery + "'",
-				bottomText: "Press enter to move them to a new window"
+				topText: this.state.selection.size + " 个匹配 '" + searchQuery + "'",
+				bottomText: "按回车键将它们移到新窗口"
 			});
 		} else if (matches === 1) {
 			this.setState({
-				topText: this.state.selection.size + " match for '" + searchQuery + "'",
-				bottomText: "Press enter to switch to the tab"
+				topText: this.state.selection.size + " 个匹配 '" + searchQuery + "'",
+				bottomText: "按回车键切换到该标签"
 			});
 		}
 		this.forceUpdate();
@@ -1382,7 +1382,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 
 		this.setState({
 			layout: newLayout,
-			topText: "Switched to " + this.readablelayout(this.state.layout) + " view",
+			topText: "已切换到 " + this.readablelayout(this.state.layout) + " 视图",
 			bottomText: " "
 		});
 
@@ -1403,13 +1403,13 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	readablelayout(layout) {
 		switch (layout) {
 			case "blocks":
-				return "Block";
+				return "块状";
 			case "blocks-big":
-				return "Big Block";
+				return "大块状";
 			case "horizontal":
-				return "Horizontal";
+				return "横向";
 			default:
-				return "Vertical";
+				return "纵向";
 		}
 	}
 	select(id : number) {
@@ -1434,18 +1434,18 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 		var selected = this.state.selection.size;
 		if (selected === 0) {
 			this.setState({
-				topText: "No tabs selected",
+				topText: "未选中任何标签",
 				bottomText: " "
 			});
 		} else if (selected === 1) {
 			this.setState({
-				topText: "Selected " + selected + " tab",
-				bottomText: "Press enter to switch to it"
+				topText: "已选中 " + selected + " 个标签",
+				bottomText: "按回车键切换到该标签"
 			});
 		} else {
 			this.setState({
-				topText: "Selected " + selected + " tabs",
-				bottomText: "Press enter to move them to a new window"
+				topText: "已选中 " + selected + " 个标签",
+				bottomText: "按回车键将它们移到新窗口"
 			});
 		}
 	}
@@ -1564,18 +1564,18 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 		const selected = this.state.selection.size;
 		if (selected === 0) {
 			this.setState({
-				topText: "No tabs selected",
+				topText: "未选中任何标签",
 				bottomText: " "
 			});
 		} else if (selected === 1) {
 			this.setState({
-				topText: "Selected " + selected + " tab",
-				bottomText: "Press enter to switch to it"
+				topText: "已选中 " + selected + " 个标签",
+				bottomText: "按回车键切换到该标签"
 			});
 		} else {
 			this.setState({
-				topText: "Selected " + selected + " tabs",
-				bottomText: "Press enter to move them to a new window"
+				topText: "已选中 " + selected + " 个标签",
+				bottomText: "按回车键将它们移到新窗口"
 			});
 		}
 		this.forceUpdate();
@@ -1626,7 +1626,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	tabLimitText() {
 		this.setState({
-			bottomText: "Limit the number of tabs per window. Will move new tabs into a new window instead. 0 to turn off"
+			bottomText: "限制每个窗口的标签数量。新标签会移到新窗口。设为 0 关闭此功能"
 		});
 	}
 	async changeTabWidth(e : React.ChangeEvent<HTMLInputElement>) {
@@ -1641,7 +1641,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	tabWidthText() {
 		this.setState({
-			bottomText: "Change the width of this window. 800 by default."
+			bottomText: "更改此窗口的宽度。默认 800。"
 		});
 	}
 	async changeTabHeight(e : React.ChangeEvent<HTMLInputElement>) {
@@ -1656,7 +1656,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	tabHeightText() {
 		this.setState({
-			bottomText: "Change the height of this window. 600 by default."
+			bottomText: "更改此窗口的高度。默认 600。"
 		});
 	}
 	async toggleAnimations() {
@@ -1668,7 +1668,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	animationsText() {
 		this.setState({
-			bottomText: "Enables/disables animations. Default : on"
+			bottomText: "启用/禁用动画效果。默认：开启"
 		});
 	}
 	async toggleWindowTitles() {
@@ -1680,7 +1680,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	windowTitlesText() {
 		this.setState({
-			bottomText: "Enables/disables window titles. Default : on"
+			bottomText: "启用/禁用窗口标题。默认：开启"
 		});
 	}
 	async toggleCompact() {
@@ -1692,7 +1692,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	compactText() {
 		this.setState({
-			bottomText: "Compact mode is a more compressed layout. Default : off"
+			bottomText: "紧凑模式是更紧凑的布局。默认：关闭"
 		});
 	}
 	async toggleDark() {
@@ -1712,7 +1712,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	darkText() {
 		this.setState({
-			bottomText: "Dark mode inverts the layout - better on the eyes. Default : off"
+			bottomText: "深色模式会反转布局颜色 - 对眼睛更友好。默认：关闭"
 		});
 	}
 	async toggleTabActions() {
@@ -1724,7 +1724,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	tabActionsText() {
 		this.setState({
-			bottomText: "Adds 'Open a new tab' and 'Close this window' option to each window. Default : on"
+			bottomText: "为每个窗口添加「打开新标签页」和「关闭此窗口」选项。默认：开启"
 		});
 	}
 	async toggleBadge() {
@@ -1737,7 +1737,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	badgeText() {
 		this.setState({
-			bottomText: "Shows the number of open tabs on the Tab Manager icon. Default : on"
+			bottomText: "在 Tab Manager 图标上显示打开的标签数。默认：开启"
 		});
 	}
 	async toggleOpenInOwnTab() {
@@ -1750,7 +1750,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	openInOwnTabText() {
 		this.setState({
-			bottomText: "Open the Tab Manager by default in own tab, or as a popup?"
+			bottomText: "默认在独立标签页中打开 Tab Manager，还是作为弹窗打开？"
 		});
 	}
 	async toggleSessions() {
@@ -1762,12 +1762,12 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	sessionsText() {
 		this.setState({
-			bottomText: "Allows you to save/restore windows into sessions. ( Tab History will be lost ) Default : off"
+			bottomText: "允许你将窗口保存/恢复为会话。（标签历史记录会丢失）默认：关闭"
 		});
 	}
 	exportSessions() {
 		if (this.state.sessions.length === 0) {
-			window.alert("You have currently no windows saved for later. There is nothing to export.");
+			window.alert("你当前没有保存供以后使用的窗口。没有可导出的内容。");
 			return;
 		}
 		var exportName = "tab-manager-plus-backup";
@@ -1792,13 +1792,13 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	exportSessionsText() {
 		this.setState({
-			bottomText: "Allows you to export your saved windows to an external backup"
+			bottomText: "允许你将已保存的窗口导出为外部备份"
 		});
 	}
 	importSessions(evt : React.ChangeEvent<HTMLInputElement>) {
 		if (navigator.userAgent.search("Firefox") > -1) {
 			if(window.inPopup) {
-				window.alert("Due to a Firefox bug session import does not work in the popup. Please use the options screen or open Tab Manager Plus in its' own tab");
+				window.alert("由于 Firefox 的一个 bug，弹窗中无法导入会话。请使用选项页面或在独立标签页中打开 Tab Manager Plus");
 				return;
 			}
 		}
@@ -1806,8 +1806,8 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 			let inputField = evt.target; // #session_import
 			let files = evt.target.files;
 			if (!files.length) {
-				alert("No file selected!");
-				this.setState({ bottomText: "Error: Could not read the backup file!" });
+				alert("未选择文件！");
+				this.setState({ bottomText: "错误：无法读取备份文件！" });
 				return;
 			}
 			let file = files[0];
@@ -1821,7 +1821,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 				} catch (err) {
 					console.error(err);
 					window.alert(err);
-					this.setState({ bottomText: "Error: Could not read the backup file!" });
+					this.setState({ bottomText: "错误：无法读取备份文件！" });
 				}
 				if (!!backupFile && backupFile.length > 0) {
 					var success = backupFile.length;
@@ -1840,9 +1840,9 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 							//console.log(value);
 						}
 					}
-					this.setState({ bottomText: success + " windows successfully restored!" });
+					this.setState({ bottomText: "成功恢复 " + success + " 个窗口！" });
 				} else {
-					this.setState({ bottomText: "Error: Could not restore any windows from the backup file!" });
+					this.setState({ bottomText: "错误：无法从备份文件恢复任何窗口！" });
 				}
 				inputField.value = "";
 				this.sessionSync();
@@ -1857,7 +1857,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	importSessionsText() {
 		this.setState({
-			bottomText: "Allows you to restore your saved windows from an external backup"
+			bottomText: "允许你从外部备份恢复已保存的窗口"
 		});
 	}
 	async toggleHide() {
@@ -1883,7 +1883,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	hideText() {
 		this.setState({
-			bottomText: "Automatically minimizes inactive chrome windows. Default : off"
+			bottomText: "自动最小化非活动的 Chrome 窗口。默认：关闭"
 		});
 	}
 	async toggleFilterMismatchedTabs() {
@@ -1896,17 +1896,17 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 	}
 	getTip() {
 		var tips = [
-			"You can right click on a tab to select it",
-			"Press enter to move all selected tabs to a new window",
-			"Middle click to close a tab",
-			"Tab Manager Plus loves saving time",
-			"To see incognito tabs, enable incognito access in the extension settings",
-			"You can drag and drop tabs to other windows",
-			"You can type to search right away",
-			"You can search for different tabs : google OR yahoo"
+			"你可以右键点击标签来选中它",
+			"按回车键将所有选中标签移到新窗口",
+			"中键点击可关闭标签",
+			"Tab Manager Plus 热爱为你节省时间",
+			"要查看隐身标签，请在扩展设置中启用隐身访问权限",
+			"你可以将标签拖放到其他窗口",
+			"你可以直接输入进行搜索",
+			"你可以搜索不同的标签：google OR yahoo"
 		];
 
-		return "Tip: " + tips[Math.floor(Math.random() * tips.length)];
+		return "提示：" + tips[Math.floor(Math.random() * tips.length)];
 	}
 	elVisible(elem : HTMLElement) {
 		if (!(elem instanceof Element)) throw Error("DomUtil: elem is not an element.");

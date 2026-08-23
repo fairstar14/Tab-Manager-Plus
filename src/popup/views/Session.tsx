@@ -64,13 +64,13 @@ export class Session extends React.Component<ISession, ISessionState> {
 					<div key={"sessionwa_" + _this.props.session.id} className="window-actions">
 						<div
 							className={"icon tabaction restore " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-							title={"Restore this saved window\nWill restore " + tabs.length + " tabs. Please note : The tabs will be restored without their history."}
+							title={"恢复此已保存窗口\n将恢复 " + tabs.length + " 个标签。请注意：恢复的标签将丢失其历史记录。"}
 							onClick={this.windowClick}
 							onMouseEnter={this.props.hoverIcon}
 						/>
 						<div
 							className={"icon tabaction delete " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-							title={"Delete this saved window\nWill delete " + tabs.length + " tabs permanently"}
+							title={"删除此已保存窗口\n将永久删除 " + tabs.length + " 个标签"}
 							onClick={this.close}
 							onMouseEnter={this.props.hoverIcon}
 						/>

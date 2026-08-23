@@ -7258,7 +7258,7 @@
       if (callNow) func.apply(context, args);
     };
   }
-  function maybePluralize(count, noun, suffix = "s") {
+  function maybePluralize(count, noun, suffix = "") {
     return `${count} ${noun}${count !== 1 ? suffix : ""}`;
   }
   function toBoolean(str) {
@@ -7458,7 +7458,7 @@
               "div",
               {
                 className: "icon tabaction restore " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Restore this saved window\nWill restore " + tabs4.length + " tabs. Please note : The tabs will be restored without their history.",
+                title: "\u6062\u590D\u6B64\u5DF2\u4FDD\u5B58\u7A97\u53E3\n\u5C06\u6062\u590D " + tabs4.length + " \u4E2A\u6807\u7B7E\u3002\u8BF7\u6CE8\u610F\uFF1A\u6062\u590D\u7684\u6807\u7B7E\u5C06\u4E22\u5931\u5176\u5386\u53F2\u8BB0\u5F55\u3002",
                 onClick: this.windowClick,
                 onMouseEnter: this.props.hoverIcon
               }
@@ -7466,7 +7466,7 @@
               "div",
               {
                 className: "icon tabaction delete " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Delete this saved window\nWill delete " + tabs4.length + " tabs permanently",
+                title: "\u5220\u9664\u6B64\u5DF2\u4FDD\u5B58\u7A97\u53E3\n\u5C06\u6C38\u4E45\u5220\u9664 " + tabs4.length + " \u4E2A\u6807\u7B7E",
                 onClick: this.close,
                 onMouseEnter: this.props.hoverIcon
               }
@@ -7593,13 +7593,13 @@
       const children = [];
       if (this.props.layout === "vertical") {
         children.push(
-          /* @__PURE__ */ React2.createElement("div", { key: "tab-pinned-" + this.props.tab.id, className: "tab-pinned " + (!this.props.tab.pinned ? "hidden" : "") }, "Pinned")
+          /* @__PURE__ */ React2.createElement("div", { key: "tab-pinned-" + this.props.tab.id, className: "tab-pinned " + (!this.props.tab.pinned ? "hidden" : "") }, "\u5DF2\u56FA\u5B9A")
         );
         children.push(
-          /* @__PURE__ */ React2.createElement("div", { key: "tab-highlighted-" + this.props.tab.id, className: "tab-highlighted " + (!this.props.tab.highlighted ? "hidden" : "") }, "Active")
+          /* @__PURE__ */ React2.createElement("div", { key: "tab-highlighted-" + this.props.tab.id, className: "tab-highlighted " + (!this.props.tab.highlighted ? "hidden" : "") }, "\u6D3B\u52A8")
         );
         children.push(
-          /* @__PURE__ */ React2.createElement("div", { key: "tab-selected-" + this.props.tab.id, className: "tab-selected " + (!this.props.selected ? "hidden" : "") }, "Selected")
+          /* @__PURE__ */ React2.createElement("div", { key: "tab-selected-" + this.props.tab.id, className: "tab-selected " + (!this.props.selected ? "hidden" : "") }, "\u5DF2\u9009\u4E2D")
         );
         children.push(
           /* @__PURE__ */ React2.createElement(
@@ -8049,7 +8049,7 @@
               ref: "window" + window2.id
             }
           );
-        }.bind(this)), /* @__PURE__ */ React3.createElement("div", { className: "hrCont " + (!haveMin ? "hidden" : "") }, /* @__PURE__ */ React3.createElement("div", { className: "hrDiv" }, /* @__PURE__ */ React3.createElement("span", { className: "hrSpan" }, "Minimized windows"))), this.state.windows.map(function(window2) {
+        }.bind(this)), /* @__PURE__ */ React3.createElement("div", { className: "hrCont " + (!haveMin ? "hidden" : "") }, /* @__PURE__ */ React3.createElement("div", { className: "hrDiv" }, /* @__PURE__ */ React3.createElement("span", { className: "hrSpan" }, "\u5DF2\u6700\u5C0F\u5316\u7684\u7A97\u53E3"))), this.state.windows.map(function(window2) {
           if (window2.state !== "minimized") return;
           if (!!this.state.colorsActive && this.state.colorsActive !== window2.id) return;
           return /* @__PURE__ */ React3.createElement(
@@ -8084,7 +8084,7 @@
               ref: "window" + window2.id
             }
           );
-        }.bind(this)), /* @__PURE__ */ React3.createElement("div", { className: "hrCont " + (!haveSess ? "hidden" : "") }, /* @__PURE__ */ React3.createElement("div", { className: "hrDiv" }, /* @__PURE__ */ React3.createElement("span", { className: "hrSpan" }, "Saved windows"))), haveSess ? this.state.sessions.map(function(window2) {
+        }.bind(this)), /* @__PURE__ */ React3.createElement("div", { className: "hrCont " + (!haveSess ? "hidden" : "") }, /* @__PURE__ */ React3.createElement("div", { className: "hrDiv" }, /* @__PURE__ */ React3.createElement("span", { className: "hrSpan" }, "\u5DF2\u4FDD\u5B58\u7684\u7A97\u53E3"))), haveSess ? this.state.sessions.map(function(window2) {
           if (!!this.state.colorsActive && this.state.colorsActive !== window2.id) return;
           return /* @__PURE__ */ React3.createElement(
             Session,
@@ -8159,30 +8159,30 @@
             getTip: this.getTip
           }
         )),
-        /* @__PURE__ */ React3.createElement("div", { className: "window top", ref: "tophover" }, /* @__PURE__ */ React3.createElement("div", { className: "icon windowaction donate", title: "Donate a Coffee", onClick: this.donate, onMouseEnter: this.hoverIcon }), /* @__PURE__ */ React3.createElement(
+        /* @__PURE__ */ React3.createElement("div", { className: "window top", ref: "tophover" }, /* @__PURE__ */ React3.createElement("div", { className: "icon windowaction donate", title: "\u8D5E\u52A9", onClick: this.donate, onMouseEnter: this.hoverIcon }), /* @__PURE__ */ React3.createElement(
           "div",
           {
             className: "icon windowaction rate",
-            title: "Rate Tab Manager Plus",
+            title: "\u8BC4\u4EF7 Tab Manager Plus",
             onClick: this.rateExtension,
             onMouseEnter: this.hoverIcon
           }
-        ), /* @__PURE__ */ React3.createElement("div", { className: "icon windowaction options", title: "Options", onClick: this.toggleOptions, onMouseEnter: this.hoverIcon }), /* @__PURE__ */ React3.createElement(
+        ), /* @__PURE__ */ React3.createElement("div", { className: "icon windowaction options", title: "\u9009\u9879", onClick: this.toggleOptions, onMouseEnter: this.hoverIcon }), /* @__PURE__ */ React3.createElement(
           "input",
           {
             type: "text",
             disabled: true,
             className: "tabtitle",
             ref: "topbox",
-            placeholder: maybePluralize(tabCount, "tab") + " in " + maybePluralize(this.state.windows.length, "window"),
+            placeholder: maybePluralize(tabCount, "\u4E2A\u6807\u7B7E") + "\uFF0C" + maybePluralize(this.state.windows.length, "\u4E2A\u7A97\u53E3"),
             value: this.state.topText
           }
         ), /* @__PURE__ */ React3.createElement("input", { type: "text", disabled: true, className: "taburl", ref: "topboxurl", placeholder: this.getTip(), value: this.state.bottomText })),
-        !this.state.optionsActive && !this.state.colorsActive && /* @__PURE__ */ React3.createElement("div", { className: "window searchbox" }, /* @__PURE__ */ React3.createElement("table", null, /* @__PURE__ */ React3.createElement("tbody", null, /* @__PURE__ */ React3.createElement("tr", null, /* @__PURE__ */ React3.createElement("td", { className: "one" }, /* @__PURE__ */ React3.createElement("input", { className: "searchBoxInput", type: "text", placeholder: "Start typing to search tabs...", tabIndex: 1, onChange: this.search, ref: "searchbox" })), /* @__PURE__ */ React3.createElement("td", { className: "two" }, /* @__PURE__ */ React3.createElement(
+        !this.state.optionsActive && !this.state.colorsActive && /* @__PURE__ */ React3.createElement("div", { className: "window searchbox" }, /* @__PURE__ */ React3.createElement("table", null, /* @__PURE__ */ React3.createElement("tbody", null, /* @__PURE__ */ React3.createElement("tr", null, /* @__PURE__ */ React3.createElement("td", { className: "one" }, /* @__PURE__ */ React3.createElement("input", { className: "searchBoxInput", type: "text", placeholder: "\u8F93\u5165\u4EE5\u641C\u7D22\u6807\u7B7E\u9875...", tabIndex: 1, onChange: this.search, ref: "searchbox" })), /* @__PURE__ */ React3.createElement("td", { className: "two" }, /* @__PURE__ */ React3.createElement(
           "div",
           {
             className: "icon windowaction " + this.state.layout + "-view",
-            title: "Change to " + this.readablelayout(this.nextlayout()) + " View",
+            title: "\u5207\u6362\u5230 " + this.readablelayout(this.nextlayout()) + " \u89C6\u56FE",
             onClick: this.changelayout,
             onMouseEnter: this.hoverIcon
           }
@@ -8190,7 +8190,7 @@
           "div",
           {
             className: "icon windowaction trash",
-            title: this.state.selection.size > 0 ? "Close selected tabs\nWill close " + maybePluralize(this.state.selection.size, "tab") : "Close current Tab",
+            title: this.state.selection.size > 0 ? "\u5173\u95ED\u9009\u4E2D\u6807\u7B7E\n\u5C06\u5173\u95ED " + maybePluralize(this.state.selection.size, "\u4E2A\u6807\u7B7E") : "\u5173\u95ED\u5F53\u524D\u6807\u7B7E",
             onClick: this.deleteTabs,
             onMouseEnter: this.hoverIcon
           }
@@ -8198,7 +8198,7 @@
           "div",
           {
             className: "icon windowaction discard",
-            title: this.state.selection.size > 0 ? "Discard selected tabs\nWill discard " + maybePluralize(this.state.selection.size, "tab") + " - freeing memory" : "Select tabs to discard them and free memory",
+            title: this.state.selection.size > 0 ? "\u6302\u8D77\u9009\u4E2D\u6807\u7B7E\n\u5C06\u6302\u8D77 " + maybePluralize(this.state.selection.size, "\u4E2A\u6807\u7B7E") + " - \u91CA\u653E\u5185\u5B58" : "\u9009\u4E2D\u6807\u7B7E\u4EE5\u6302\u8D77\u5E76\u91CA\u653E\u5185\u5B58",
             style: this.state.selection.size > 0 ? {} : { opacity: 0.25 },
             onClick: this.discardTabs,
             onMouseEnter: this.hoverIcon
@@ -8207,7 +8207,7 @@
           "div",
           {
             className: "icon windowaction pin",
-            title: this.state.selection.size > 0 ? "Pin selected tabs\nWill pin " + maybePluralize(this.state.selection.size, "tab") : "Pin current Tab",
+            title: this.state.selection.size > 0 ? "\u56FA\u5B9A\u9009\u4E2D\u6807\u7B7E\n\u5C06\u56FA\u5B9A " + maybePluralize(this.state.selection.size, "\u4E2A\u6807\u7B7E") : "\u56FA\u5B9A\u5F53\u524D\u6807\u7B7E",
             onClick: this.pinTabs,
             onMouseEnter: this.hoverIcon
           }
@@ -8215,7 +8215,7 @@
           "div",
           {
             className: "icon windowaction filter" + (this.state.filterTabs ? " enabled" : ""),
-            title: (this.state.filterTabs ? "Turn off hiding of" : "Hide") + " tabs that do not match search" + (this.state.searchLen > 0 ? "\n" + (this.state.filterTabs ? "Will reveal " : "Will hide ") + maybePluralize(this.state.tabsbyid.size - this.state.selection.size, "tab") : ""),
+            title: (this.state.filterTabs ? "\u505C\u6B62\u9690\u85CF" : "\u9690\u85CF") + "\u4E0D\u5339\u914D\u641C\u7D22\u7684\u6807\u7B7E" + (this.state.searchLen > 0 ? "\n" + (this.state.filterTabs ? "\u5C06\u663E\u793A " : "\u5C06\u9690\u85CF ") + maybePluralize(this.state.tabsbyid.size - this.state.selection.size, "\u4E2A\u6807\u7B7E") : ""),
             onClick: this.toggleFilterMismatchedTabs,
             onMouseEnter: this.hoverIcon
           }
@@ -8223,7 +8223,7 @@
           "div",
           {
             className: "icon windowaction new",
-            title: this.state.selection.size > 0 ? "Move tabs to new window\nWill move " + maybePluralize(this.state.selection.size, "selected tab") + " to it" : "Open new empty window",
+            title: this.state.selection.size > 0 ? "\u5C06\u6807\u7B7E\u79FB\u5230\u65B0\u7A97\u53E3\n\u5C06\u79FB\u52A8 " + maybePluralize(this.state.selection.size, "\u4E2A\u9009\u4E2D\u6807\u7B7E") + " \u5230\u65B0\u7A97\u53E3" : "\u6253\u5F00\u7A7A\u767D\u7A97\u53E3",
             onClick: this.addWindow,
             onMouseEnter: this.hoverIcon
           }
@@ -8231,7 +8231,7 @@
           "div",
           {
             className: "icon windowaction duplicates" + (this.state.dupTabs ? " enabled" : ""),
-            title: "Highlight Duplicates",
+            title: "\u9AD8\u4EAE\u91CD\u590D\u6807\u7B7E",
             onClick: this.highlightDuplicates,
             onMouseEnter: this.hoverIcon
           }
@@ -8555,13 +8555,13 @@
       }
       if (dup.length === 0) {
         this.setState({
-          topText: "No duplicates found",
+          topText: "\u672A\u627E\u5230\u91CD\u590D\u6807\u7B7E",
           bottomText: " "
         });
       } else {
         this.setState({
-          topText: "Highlighted " + dup.length + " duplicate tabs",
-          bottomText: "Press enter to move them to a new window"
+          topText: "\u5DF2\u9AD8\u4EAE " + dup.length + " \u4E2A\u91CD\u590D\u6807\u7B7E",
+          bottomText: "\u6309\u56DE\u8F66\u952E\u5C06\u5B83\u4EEC\u79FB\u5230\u65B0\u7A97\u53E3"
         });
       }
       this.setState({
@@ -8660,7 +8660,7 @@
       const matches = this.state.selection.size;
       if (matches === 0 && searchLen > 0) {
         this.setState({
-          topText: "No matches for '" + searchQuery + "'",
+          topText: "\u672A\u627E\u5230\u5339\u914D '" + searchQuery + "' \u7684\u6807\u7B7E",
           bottomText: ""
         });
       } else if (matches === 0) {
@@ -8670,13 +8670,13 @@
         });
       } else if (matches > 1) {
         this.setState({
-          topText: this.state.selection.size + " matches for '" + searchQuery + "'",
-          bottomText: "Press enter to move them to a new window"
+          topText: this.state.selection.size + " \u4E2A\u5339\u914D '" + searchQuery + "'",
+          bottomText: "\u6309\u56DE\u8F66\u952E\u5C06\u5B83\u4EEC\u79FB\u5230\u65B0\u7A97\u53E3"
         });
       } else if (matches === 1) {
         this.setState({
-          topText: this.state.selection.size + " match for '" + searchQuery + "'",
-          bottomText: "Press enter to switch to the tab"
+          topText: this.state.selection.size + " \u4E2A\u5339\u914D '" + searchQuery + "'",
+          bottomText: "\u6309\u56DE\u8F66\u952E\u5207\u6362\u5230\u8BE5\u6807\u7B7E"
         });
       }
       this.forceUpdate();
@@ -8975,7 +8975,7 @@
       await setLocalStorage("layout", newLayout);
       this.setState({
         layout: newLayout,
-        topText: "Switched to " + this.readablelayout(this.state.layout) + " view",
+        topText: "\u5DF2\u5207\u6362\u5230 " + this.readablelayout(this.state.layout) + " \u89C6\u56FE",
         bottomText: " "
       });
       this.forceUpdate();
@@ -8995,13 +8995,13 @@
     readablelayout(layout) {
       switch (layout) {
         case "blocks":
-          return "Block";
+          return "\u5757\u72B6";
         case "blocks-big":
-          return "Big Block";
+          return "\u5927\u5757\u72B6";
         case "horizontal":
-          return "Horizontal";
+          return "\u6A2A\u5411";
         default:
-          return "Vertical";
+          return "\u7EB5\u5411";
       }
     }
     select(id) {
@@ -9025,18 +9025,18 @@
       var selected = this.state.selection.size;
       if (selected === 0) {
         this.setState({
-          topText: "No tabs selected",
+          topText: "\u672A\u9009\u4E2D\u4EFB\u4F55\u6807\u7B7E",
           bottomText: " "
         });
       } else if (selected === 1) {
         this.setState({
-          topText: "Selected " + selected + " tab",
-          bottomText: "Press enter to switch to it"
+          topText: "\u5DF2\u9009\u4E2D " + selected + " \u4E2A\u6807\u7B7E",
+          bottomText: "\u6309\u56DE\u8F66\u952E\u5207\u6362\u5230\u8BE5\u6807\u7B7E"
         });
       } else {
         this.setState({
-          topText: "Selected " + selected + " tabs",
-          bottomText: "Press enter to move them to a new window"
+          topText: "\u5DF2\u9009\u4E2D " + selected + " \u4E2A\u6807\u7B7E",
+          bottomText: "\u6309\u56DE\u8F66\u952E\u5C06\u5B83\u4EEC\u79FB\u5230\u65B0\u7A97\u53E3"
         });
       }
     }
@@ -9147,18 +9147,18 @@
       const selected = this.state.selection.size;
       if (selected === 0) {
         this.setState({
-          topText: "No tabs selected",
+          topText: "\u672A\u9009\u4E2D\u4EFB\u4F55\u6807\u7B7E",
           bottomText: " "
         });
       } else if (selected === 1) {
         this.setState({
-          topText: "Selected " + selected + " tab",
-          bottomText: "Press enter to switch to it"
+          topText: "\u5DF2\u9009\u4E2D " + selected + " \u4E2A\u6807\u7B7E",
+          bottomText: "\u6309\u56DE\u8F66\u952E\u5207\u6362\u5230\u8BE5\u6807\u7B7E"
         });
       } else {
         this.setState({
-          topText: "Selected " + selected + " tabs",
-          bottomText: "Press enter to move them to a new window"
+          topText: "\u5DF2\u9009\u4E2D " + selected + " \u4E2A\u6807\u7B7E",
+          bottomText: "\u6309\u56DE\u8F66\u952E\u5C06\u5B83\u4EEC\u79FB\u5230\u65B0\u7A97\u53E3"
         });
       }
       this.forceUpdate();
@@ -9206,7 +9206,7 @@
     }
     tabLimitText() {
       this.setState({
-        bottomText: "Limit the number of tabs per window. Will move new tabs into a new window instead. 0 to turn off"
+        bottomText: "\u9650\u5236\u6BCF\u4E2A\u7A97\u53E3\u7684\u6807\u7B7E\u6570\u91CF\u3002\u65B0\u6807\u7B7E\u4F1A\u79FB\u5230\u65B0\u7A97\u53E3\u3002\u8BBE\u4E3A 0 \u5173\u95ED\u6B64\u529F\u80FD"
       });
     }
     async changeTabWidth(e) {
@@ -9221,7 +9221,7 @@
     }
     tabWidthText() {
       this.setState({
-        bottomText: "Change the width of this window. 800 by default."
+        bottomText: "\u66F4\u6539\u6B64\u7A97\u53E3\u7684\u5BBD\u5EA6\u3002\u9ED8\u8BA4 800\u3002"
       });
     }
     async changeTabHeight(e) {
@@ -9236,7 +9236,7 @@
     }
     tabHeightText() {
       this.setState({
-        bottomText: "Change the height of this window. 600 by default."
+        bottomText: "\u66F4\u6539\u6B64\u7A97\u53E3\u7684\u9AD8\u5EA6\u3002\u9ED8\u8BA4 600\u3002"
       });
     }
     async toggleAnimations() {
@@ -9248,7 +9248,7 @@
     }
     animationsText() {
       this.setState({
-        bottomText: "Enables/disables animations. Default : on"
+        bottomText: "\u542F\u7528/\u7981\u7528\u52A8\u753B\u6548\u679C\u3002\u9ED8\u8BA4\uFF1A\u5F00\u542F"
       });
     }
     async toggleWindowTitles() {
@@ -9260,7 +9260,7 @@
     }
     windowTitlesText() {
       this.setState({
-        bottomText: "Enables/disables window titles. Default : on"
+        bottomText: "\u542F\u7528/\u7981\u7528\u7A97\u53E3\u6807\u9898\u3002\u9ED8\u8BA4\uFF1A\u5F00\u542F"
       });
     }
     async toggleCompact() {
@@ -9272,7 +9272,7 @@
     }
     compactText() {
       this.setState({
-        bottomText: "Compact mode is a more compressed layout. Default : off"
+        bottomText: "\u7D27\u51D1\u6A21\u5F0F\u662F\u66F4\u7D27\u51D1\u7684\u5E03\u5C40\u3002\u9ED8\u8BA4\uFF1A\u5173\u95ED"
       });
     }
     async toggleDark() {
@@ -9291,7 +9291,7 @@
     }
     darkText() {
       this.setState({
-        bottomText: "Dark mode inverts the layout - better on the eyes. Default : off"
+        bottomText: "\u6DF1\u8272\u6A21\u5F0F\u4F1A\u53CD\u8F6C\u5E03\u5C40\u989C\u8272 - \u5BF9\u773C\u775B\u66F4\u53CB\u597D\u3002\u9ED8\u8BA4\uFF1A\u5173\u95ED"
       });
     }
     async toggleTabActions() {
@@ -9303,7 +9303,7 @@
     }
     tabActionsText() {
       this.setState({
-        bottomText: "Adds 'Open a new tab' and 'Close this window' option to each window. Default : on"
+        bottomText: "\u4E3A\u6BCF\u4E2A\u7A97\u53E3\u6DFB\u52A0\u300C\u6253\u5F00\u65B0\u6807\u7B7E\u9875\u300D\u548C\u300C\u5173\u95ED\u6B64\u7A97\u53E3\u300D\u9009\u9879\u3002\u9ED8\u8BA4\uFF1A\u5F00\u542F"
       });
     }
     async toggleBadge() {
@@ -9316,7 +9316,7 @@
     }
     badgeText() {
       this.setState({
-        bottomText: "Shows the number of open tabs on the Tab Manager icon. Default : on"
+        bottomText: "\u5728 Tab Manager \u56FE\u6807\u4E0A\u663E\u793A\u6253\u5F00\u7684\u6807\u7B7E\u6570\u3002\u9ED8\u8BA4\uFF1A\u5F00\u542F"
       });
     }
     async toggleOpenInOwnTab() {
@@ -9329,7 +9329,7 @@
     }
     openInOwnTabText() {
       this.setState({
-        bottomText: "Open the Tab Manager by default in own tab, or as a popup?"
+        bottomText: "\u9ED8\u8BA4\u5728\u72EC\u7ACB\u6807\u7B7E\u9875\u4E2D\u6253\u5F00 Tab Manager\uFF0C\u8FD8\u662F\u4F5C\u4E3A\u5F39\u7A97\u6253\u5F00\uFF1F"
       });
     }
     async toggleSessions() {
@@ -9341,12 +9341,12 @@
     }
     sessionsText() {
       this.setState({
-        bottomText: "Allows you to save/restore windows into sessions. ( Tab History will be lost ) Default : off"
+        bottomText: "\u5141\u8BB8\u4F60\u5C06\u7A97\u53E3\u4FDD\u5B58/\u6062\u590D\u4E3A\u4F1A\u8BDD\u3002\uFF08\u6807\u7B7E\u5386\u53F2\u8BB0\u5F55\u4F1A\u4E22\u5931\uFF09\u9ED8\u8BA4\uFF1A\u5173\u95ED"
       });
     }
     exportSessions() {
       if (this.state.sessions.length === 0) {
-        window.alert("You have currently no windows saved for later. There is nothing to export.");
+        window.alert("\u4F60\u5F53\u524D\u6CA1\u6709\u4FDD\u5B58\u4F9B\u4EE5\u540E\u4F7F\u7528\u7684\u7A97\u53E3\u3002\u6CA1\u6709\u53EF\u5BFC\u51FA\u7684\u5185\u5BB9\u3002");
         return;
       }
       var exportName = "tab-manager-plus-backup";
@@ -9370,13 +9370,13 @@
     }
     exportSessionsText() {
       this.setState({
-        bottomText: "Allows you to export your saved windows to an external backup"
+        bottomText: "\u5141\u8BB8\u4F60\u5C06\u5DF2\u4FDD\u5B58\u7684\u7A97\u53E3\u5BFC\u51FA\u4E3A\u5916\u90E8\u5907\u4EFD"
       });
     }
     importSessions(evt) {
       if (navigator.userAgent.search("Firefox") > -1) {
         if (window.inPopup) {
-          window.alert("Due to a Firefox bug session import does not work in the popup. Please use the options screen or open Tab Manager Plus in its' own tab");
+          window.alert("\u7531\u4E8E Firefox \u7684\u4E00\u4E2A bug\uFF0C\u5F39\u7A97\u4E2D\u65E0\u6CD5\u5BFC\u5165\u4F1A\u8BDD\u3002\u8BF7\u4F7F\u7528\u9009\u9879\u9875\u9762\u6216\u5728\u72EC\u7ACB\u6807\u7B7E\u9875\u4E2D\u6253\u5F00 Tab Manager Plus");
           return;
         }
       }
@@ -9384,8 +9384,8 @@
         let inputField = evt.target;
         let files = evt.target.files;
         if (!files.length) {
-          alert("No file selected!");
-          this.setState({ bottomText: "Error: Could not read the backup file!" });
+          alert("\u672A\u9009\u62E9\u6587\u4EF6\uFF01");
+          this.setState({ bottomText: "\u9519\u8BEF\uFF1A\u65E0\u6CD5\u8BFB\u53D6\u5907\u4EFD\u6587\u4EF6\uFF01" });
           return;
         }
         let file = files[0];
@@ -9397,7 +9397,7 @@
           } catch (err) {
             console.error(err);
             window.alert(err);
-            this.setState({ bottomText: "Error: Could not read the backup file!" });
+            this.setState({ bottomText: "\u9519\u8BEF\uFF1A\u65E0\u6CD5\u8BFB\u53D6\u5907\u4EFD\u6587\u4EF6\uFF01" });
           }
           if (!!backupFile && backupFile.length > 0) {
             var success = backupFile.length;
@@ -9413,9 +9413,9 @@
                 });
               }
             }
-            this.setState({ bottomText: success + " windows successfully restored!" });
+            this.setState({ bottomText: "\u6210\u529F\u6062\u590D " + success + " \u4E2A\u7A97\u53E3\uFF01" });
           } else {
-            this.setState({ bottomText: "Error: Could not restore any windows from the backup file!" });
+            this.setState({ bottomText: "\u9519\u8BEF\uFF1A\u65E0\u6CD5\u4ECE\u5907\u4EFD\u6587\u4EF6\u6062\u590D\u4EFB\u4F55\u7A97\u53E3\uFF01" });
           }
           inputField.value = "";
           this.sessionSync();
@@ -9430,7 +9430,7 @@
     }
     importSessionsText() {
       this.setState({
-        bottomText: "Allows you to restore your saved windows from an external backup"
+        bottomText: "\u5141\u8BB8\u4F60\u4ECE\u5916\u90E8\u5907\u4EFD\u6062\u590D\u5DF2\u4FDD\u5B58\u7684\u7A97\u53E3"
       });
     }
     async toggleHide() {
@@ -9454,7 +9454,7 @@
     }
     hideText() {
       this.setState({
-        bottomText: "Automatically minimizes inactive chrome windows. Default : off"
+        bottomText: "\u81EA\u52A8\u6700\u5C0F\u5316\u975E\u6D3B\u52A8\u7684 Chrome \u7A97\u53E3\u3002\u9ED8\u8BA4\uFF1A\u5173\u95ED"
       });
     }
     async toggleFilterMismatchedTabs() {
@@ -9467,16 +9467,16 @@
     }
     getTip() {
       var tips = [
-        "You can right click on a tab to select it",
-        "Press enter to move all selected tabs to a new window",
-        "Middle click to close a tab",
-        "Tab Manager Plus loves saving time",
-        "To see incognito tabs, enable incognito access in the extension settings",
-        "You can drag and drop tabs to other windows",
-        "You can type to search right away",
-        "You can search for different tabs : google OR yahoo"
+        "\u4F60\u53EF\u4EE5\u53F3\u952E\u70B9\u51FB\u6807\u7B7E\u6765\u9009\u4E2D\u5B83",
+        "\u6309\u56DE\u8F66\u952E\u5C06\u6240\u6709\u9009\u4E2D\u6807\u7B7E\u79FB\u5230\u65B0\u7A97\u53E3",
+        "\u4E2D\u952E\u70B9\u51FB\u53EF\u5173\u95ED\u6807\u7B7E",
+        "Tab Manager Plus \u70ED\u7231\u4E3A\u4F60\u8282\u7701\u65F6\u95F4",
+        "\u8981\u67E5\u770B\u9690\u8EAB\u6807\u7B7E\uFF0C\u8BF7\u5728\u6269\u5C55\u8BBE\u7F6E\u4E2D\u542F\u7528\u9690\u8EAB\u8BBF\u95EE\u6743\u9650",
+        "\u4F60\u53EF\u4EE5\u5C06\u6807\u7B7E\u62D6\u653E\u5230\u5176\u4ED6\u7A97\u53E3",
+        "\u4F60\u53EF\u4EE5\u76F4\u63A5\u8F93\u5165\u8FDB\u884C\u641C\u7D22",
+        "\u4F60\u53EF\u4EE5\u641C\u7D22\u4E0D\u540C\u7684\u6807\u7B7E\uFF1Agoogle OR yahoo"
       ];
-      return "Tip: " + tips[Math.floor(Math.random() * tips.length)];
+      return "\u63D0\u793A\uFF1A" + tips[Math.floor(Math.random() * tips.length)];
     }
     elVisible(elem) {
       if (!(elem instanceof Element)) throw Error("DomUtil: elem is not an element.");
@@ -9516,7 +9516,7 @@
       return /* @__PURE__ */ React4.createElement("div", { className: "logo-options", key: "logo" }, /* @__PURE__ */ React4.createElement("div", { className: "logo-box" }, /* @__PURE__ */ React4.createElement("img", { src: "images/browsers.svg", style: { maxWidth: "3rem" }, alt: "Tab Manager Plus" }), /* @__PURE__ */ React4.createElement("h2", { key: "title" }, "Tab Manager Plus ", window.extensionVersion)));
     }
     optionsSection() {
-      return /* @__PURE__ */ React4.createElement("div", { className: "toggle-options", key: "options" }, /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("h4", null, "Tab options"), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement(
+      return /* @__PURE__ */ React4.createElement("div", { className: "toggle-options", key: "options" }, /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("h4", null, "\u6807\u7B7E\u9875\u9009\u9879"), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement(
         "input",
         {
           type: "number",
@@ -9526,7 +9526,7 @@
           id: "enable_tabLimit",
           name: "enable_tabLimit"
         }
-      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.tabLimitText, htmlFor: "enable_tabLimit", style: { whiteSpace: "pre", lineHeight: "2rem" } }), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "enable_tabLimit", style: { textAlign: "", whiteSpace: "pre", lineHeight: "2rem" } }, "Limit Tabs Per Window"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "Once you reach this number of tabs, Tab Manager will move new tabs to a new window instead. No more windows with 60 tabs open!", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "By default: 0 ( disabled )"), /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "Suggested value: 15")))), /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("h4", null, "Popup size"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "You can resize the popup here up to a maximum size of 800x600. This limitation is a browser limitation, and we cannot display a bigger popup due to this. If you want to have a better overview, instead you can right click on the Tab Manager Plus icon, and `open in own tab`. This will open the Tab Manager in a new tab."), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box half-size float-right" }, /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "enable_tabWidth", style: { textAlign: "", whiteSpace: "pre", lineHeight: "2rem" } }, "Popup Width"), /* @__PURE__ */ React4.createElement(
+      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.tabLimitText, htmlFor: "enable_tabLimit", style: { whiteSpace: "pre", lineHeight: "2rem" } }), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "enable_tabLimit", style: { textAlign: "", whiteSpace: "pre", lineHeight: "2rem" } }, "\u6BCF\u7A97\u53E3\u6807\u7B7E\u4E0A\u9650"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u5F53\u6807\u7B7E\u6570\u8FBE\u5230\u6B64\u6570\u503C\u65F6\uFF0CTab Manager \u4F1A\u5C06\u65B0\u6807\u7B7E\u79FB\u5230\u65B0\u7A97\u53E3\u3002\u518D\u4E5F\u4E0D\u4F1A\u6709 60 \u4E2A\u6807\u7B7E\u7684\u7A97\u53E3\u4E86\uFF01", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "\u9ED8\u8BA4\u503C\uFF1A0\uFF08\u5DF2\u7981\u7528\uFF09"), /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "\u5EFA\u8BAE\u503C\uFF1A15")))), /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("h4", null, "\u5F39\u7A97\u5927\u5C0F"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, '\u4F60\u53EF\u4EE5\u5728\u6B64\u8C03\u6574\u5F39\u7A97\u5927\u5C0F\uFF0C\u6700\u5927\u4E3A 800x600\u3002\u8FD9\u662F\u6D4F\u89C8\u5668\u7684\u9650\u5236\uFF0C\u56E0\u6B64\u65E0\u6CD5\u663E\u793A\u66F4\u5927\u7684\u5F39\u7A97\u3002\u5982\u679C\u4F60\u60F3\u8981\u66F4\u597D\u7684\u6982\u89C8\uFF0C\u53EF\u4EE5\u53F3\u952E\u70B9\u51FB Tab Manager Plus \u56FE\u6807\u5E76\u9009\u62E9"\u5728\u72EC\u7ACB\u6807\u7B7E\u9875\u6253\u5F00"\uFF0C\u8FD9\u5C06\u5728\u65B0\u6807\u7B7E\u9875\u4E2D\u6253\u5F00 Tab Manager\u3002'), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box half-size float-right" }, /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "enable_tabWidth", style: { textAlign: "", whiteSpace: "pre", lineHeight: "2rem" } }, "\u5F39\u7A97\u5BBD\u5EA6"), /* @__PURE__ */ React4.createElement(
         "input",
         {
           type: "number",
@@ -9539,7 +9539,7 @@
           id: "enable_tabWidth",
           name: "enable_tabWidth"
         }
-      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.tabWidthText, htmlFor: "enable_tabWidth", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box half-size" }, /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "enable_tabHeight", style: { textAlign: "", whiteSpace: "pre", lineHeight: "2rem" } }, "Popup Height"), /* @__PURE__ */ React4.createElement(
+      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.tabWidthText, htmlFor: "enable_tabWidth", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box half-size" }, /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "enable_tabHeight", style: { textAlign: "", whiteSpace: "pre", lineHeight: "2rem" } }, "\u5F39\u7A97\u9AD8\u5EA6"), /* @__PURE__ */ React4.createElement(
         "input",
         {
           type: "number",
@@ -9552,7 +9552,7 @@
           id: "enable_tabHeight",
           name: "enable_tabHeight"
         }
-      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.tabHeightText, htmlFor: "enable_tabHeight", style: { whiteSpace: "pre", lineHeight: "2rem" } }))), /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("h4", null, "Window style"), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
+      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.tabHeightText, htmlFor: "enable_tabHeight", style: { whiteSpace: "pre", lineHeight: "2rem" } }))), /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("h4", null, "\u7A97\u53E3\u6837\u5F0F"), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
         "input",
         {
           type: "checkbox",
@@ -9562,7 +9562,7 @@
           id: "dark_mode",
           name: "dark_mode"
         }
-      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.darkText, htmlFor: "dark_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "dark_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "Dark mode"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "Dark mode, for working at night time. ", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "By default: disabled"))), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
+      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.darkText, htmlFor: "dark_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "dark_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "\u6DF1\u8272\u6A21\u5F0F"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u6DF1\u8272\u6A21\u5F0F\uFF0C\u9002\u5408\u591C\u95F4\u4F7F\u7528\u3002 ", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "\u9ED8\u8BA4\u503C\uFF1A\u5DF2\u7981\u7528"))), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
         "input",
         {
           type: "checkbox",
@@ -9572,7 +9572,7 @@
           id: "compact_mode",
           name: "compact_mode"
         }
-      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.compactText, htmlFor: "compact_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "compact_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "Compact mode"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "Saves a little bit of space around the icons. Makes it less beautiful, but more space efficient. ", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "By default: disabled"))), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
+      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.compactText, htmlFor: "compact_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "compact_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "\u7D27\u51D1\u6A21\u5F0F"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u8282\u7701\u56FE\u6807\u5468\u56F4\u7684\u5C11\u91CF\u7A7A\u95F4\u3002\u7F8E\u89C2\u5EA6\u7565\u964D\uFF0C\u4F46\u66F4\u8282\u7701\u7A7A\u95F4\u3002 ", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "\u9ED8\u8BA4\u503C\uFF1A\u5DF2\u7981\u7528"))), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
         "input",
         {
           type: "checkbox",
@@ -9582,7 +9582,7 @@
           id: "enable_animations",
           name: "enable_animations"
         }
-      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.animationsText, htmlFor: "enable_animations", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "enable_animations", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "Animations"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "Disables/enables animations and transitions in the popup. ", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "By default: enabled"))), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
+      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.animationsText, htmlFor: "enable_animations", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "enable_animations", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "\u52A8\u753B\u6548\u679C"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u7981\u7528/\u542F\u7528\u5F39\u7A97\u4E2D\u7684\u52A8\u753B\u548C\u8FC7\u6E21\u6548\u679C\u3002 ", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "\u9ED8\u8BA4\u503C\uFF1A\u5DF2\u542F\u7528"))), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
         "input",
         {
           type: "checkbox",
@@ -9592,7 +9592,7 @@
           id: "enable_windowTitles",
           name: "enable_windowTitles"
         }
-      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.windowTitlesText, htmlFor: "enable_windowTitles", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "enable_windowTitles", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "Window titles"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "Disables/enables window titles. ", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "By default: enabled")))), /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("h4", null, "Session Management"), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
+      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.windowTitlesText, htmlFor: "enable_windowTitles", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "enable_windowTitles", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "\u7A97\u53E3\u6807\u9898"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u7981\u7528/\u542F\u7528\u7A97\u53E3\u6807\u9898\u3002 ", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "\u9ED8\u8BA4\u503C\uFF1A\u5DF2\u542F\u7528")))), /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("h4", null, "\u4F1A\u8BDD\u7BA1\u7406"), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
         "input",
         {
           type: "checkbox",
@@ -9602,7 +9602,7 @@
           id: "session_mode",
           name: "session_mode"
         }
-      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.sessionsText, htmlFor: "session_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "session_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "Save Windows for Later"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "Allows you to save windows as sessions ( saved windows ). You can restore these saved windows later on. The restored windows won't have the history restored. This feature is currently in beta.", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "By default: disabled ( experimental feature )"))), this.props.sessionsFeature && /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "session_export", style: { whiteSpace: "pre", lineHeight: "2rem" } }, /* @__PURE__ */ React4.createElement("h4", null, "Export/Backup Sessions")), /* @__PURE__ */ React4.createElement("button", { type: "button", onMouseEnter: this.props.exportSessionsText, onClick: this.props.exportSessions, id: "session_export", name: "session_export" }, "Export/Backup Sessions"), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.exportSessionsText, htmlFor: "session_export", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "Allows you to backup your saved windows to an external file.")), this.props.sessionsFeature && /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "session_import", style: { whiteSpace: "pre", lineHeight: "2rem" } }, /* @__PURE__ */ React4.createElement("h4", null, "Import/Restore Sessions")), /* @__PURE__ */ React4.createElement(
+      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.sessionsText, htmlFor: "session_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "session_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "\u4FDD\u5B58\u7A97\u53E3\u4F9B\u4EE5\u540E\u4F7F\u7528"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u5141\u8BB8\u4F60\u5C06\u7A97\u53E3\u4FDD\u5B58\u4E3A\u4F1A\u8BDD\uFF08\u5DF2\u4FDD\u5B58\u7684\u7A97\u53E3\uFF09\u3002\u4EE5\u540E\u53EF\u4EE5\u6062\u590D\u8FD9\u4E9B\u5DF2\u4FDD\u5B58\u7684\u7A97\u53E3\u3002\u6062\u590D\u7684\u7A97\u53E3\u4E0D\u4F1A\u6062\u590D\u5386\u53F2\u8BB0\u5F55\u3002\u6B64\u529F\u80FD\u76EE\u524D\u4E3A\u6D4B\u8BD5\u7248\u3002", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "\u9ED8\u8BA4\u503C\uFF1A\u5DF2\u7981\u7528\uFF08\u5B9E\u9A8C\u6027\u529F\u80FD\uFF09"))), this.props.sessionsFeature && /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "session_export", style: { whiteSpace: "pre", lineHeight: "2rem" } }, /* @__PURE__ */ React4.createElement("h4", null, "\u5BFC\u51FA/\u5907\u4EFD\u4F1A\u8BDD")), /* @__PURE__ */ React4.createElement("button", { type: "button", onMouseEnter: this.props.exportSessionsText, onClick: this.props.exportSessions, id: "session_export", name: "session_export" }, "\u5BFC\u51FA/\u5907\u4EFD\u4F1A\u8BDD"), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.exportSessionsText, htmlFor: "session_export", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u5141\u8BB8\u4F60\u5C06\u5DF2\u4FDD\u5B58\u7684\u7A97\u53E3\u5907\u4EFD\u5230\u5916\u90E8\u6587\u4EF6\u3002")), this.props.sessionsFeature && /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "session_import", style: { whiteSpace: "pre", lineHeight: "2rem" } }, /* @__PURE__ */ React4.createElement("h4", null, "\u5BFC\u5165/\u6062\u590D\u4F1A\u8BDD")), /* @__PURE__ */ React4.createElement(
         "input",
         {
           type: "file",
@@ -9611,9 +9611,9 @@
           onChange: this.props.importSessions,
           id: "session_import",
           name: "session_import",
-          placeholder: "Import/Restore Sessions"
+          placeholder: "\u5BFC\u5165/\u6062\u590D\u4F1A\u8BDD"
         }
-      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.importSessionsText, htmlFor: "session_import", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "Allows you to restore your backup from an external file. The restored windows will be added to your current saved windows."))), /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("h4", null, "Popup icon"), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
+      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.importSessionsText, htmlFor: "session_import", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u5141\u8BB8\u4F60\u4ECE\u5916\u90E8\u6587\u4EF6\u6062\u590D\u5907\u4EFD\u3002\u6062\u590D\u7684\u7A97\u53E3\u5C06\u6DFB\u52A0\u5230\u5F53\u524D\u5DF2\u4FDD\u5B58\u7684\u7A97\u53E3\u4E2D\u3002"))), /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("h4", null, "\u5F39\u7A97\u56FE\u6807"), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
         "input",
         {
           type: "checkbox",
@@ -9623,7 +9623,7 @@
           id: "badge_mode",
           name: "badge_mode"
         }
-      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.badgeText, htmlFor: "badge_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "badge_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "Count Tabs"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "Shows you the number of open tabs over the Tab Manager icon in the top right of your browser.", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "By default: enabled"))), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
+      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.badgeText, htmlFor: "badge_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "badge_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "\u663E\u793A\u6807\u7B7E\u6570"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u5728\u6D4F\u89C8\u5668\u53F3\u4E0A\u89D2\u7684 Tab Manager \u56FE\u6807\u4E0A\u663E\u793A\u6253\u5F00\u7684\u6807\u7B7E\u6570\u3002", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "\u9ED8\u8BA4\u503C\uFF1A\u5DF2\u542F\u7528"))), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
         "input",
         {
           type: "checkbox",
@@ -9633,7 +9633,7 @@
           id: "openinowntab_mode",
           name: "openinowntab_mode"
         }
-      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.openInOwnTabText, htmlFor: "openinowntab_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "openinowntab_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "Open in own Tab by default"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "Opens the Tab Manager in own tab by default, instead of the popup.", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "By default: disabled")))), /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("h4", null, "Window settings"), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
+      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.openInOwnTabText, htmlFor: "openinowntab_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "openinowntab_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "\u9ED8\u8BA4\u5728\u72EC\u7ACB\u6807\u7B7E\u9875\u6253\u5F00"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u9ED8\u8BA4\u5728\u72EC\u7ACB\u6807\u7B7E\u9875\u4E2D\u6253\u5F00 Tab Manager\uFF0C\u800C\u4E0D\u662F\u5F39\u7A97\u3002", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "\u9ED8\u8BA4\u503C\uFF1A\u5DF2\u7981\u7528")))), /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("h4", null, "\u7A97\u53E3\u8BBE\u7F6E"), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
         "input",
         {
           type: "checkbox",
@@ -9643,7 +9643,7 @@
           id: "auto_hide",
           name: "auto_hide"
         }
-      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.hideText, htmlFor: "auto_hide", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "auto_hide", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "Minimize inactive windows"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "With this option enabled, you will only have 1 open window per monitor at all times. When you switch to another window, the other windows will be minimized to the tray automatically.", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "By default: disabled"))), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
+      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.hideText, htmlFor: "auto_hide", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "auto_hide", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "\u81EA\u52A8\u6700\u5C0F\u5316\u975E\u6D3B\u52A8\u7A97\u53E3"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u542F\u7528\u6B64\u9009\u9879\u540E\uFF0C\u6BCF\u4E2A\u663E\u793A\u5668\u59CB\u7EC8\u53EA\u4FDD\u7559\u4E00\u4E2A\u6253\u5F00\u7684\u7A97\u53E3\u3002\u5207\u6362\u5230\u5176\u4ED6\u7A97\u53E3\u65F6\uFF0C\u5176\u4F59\u7A97\u53E3\u4F1A\u81EA\u52A8\u6700\u5C0F\u5316\u5230\u4EFB\u52A1\u680F\u3002", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "\u9ED8\u8BA4\u503C\uFF1A\u5DF2\u7981\u7528"))), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle" }, /* @__PURE__ */ React4.createElement(
         "input",
         {
           type: "checkbox",
@@ -9653,7 +9653,7 @@
           id: "tabactions_mode",
           name: "tabactions_mode"
         }
-      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.tabActionsText, htmlFor: "tabactions_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "tabactions_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "Show action buttons"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "Displays buttons in every window for : opening a new tab, minimizing the window, assigning a color to the window and closing the window.", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "By default: enabled")))), /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("h4", null, "Advanced settings"), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("a", { href: "#", onClick: this.openIncognitoOptions }, "Allow in Incognito")), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "If you also want to see your incognito tabs in the Tab Manager overview, then enable incognito access for this extension.")), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("a", { href: "#", onClick: this.openShortcuts }, "Change shortcut key"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "If you want to disable or change the shortcut key with which to open Tab Manager Plus, you can do so here."))), /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("h4", null, "Right mouse button"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "With the right mouse button you can select tabs"), /* @__PURE__ */ React4.createElement("h4", null, "Shift+Right mouse button"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "While holding shift, and pressing the right mouse button you can select all tabs between the last selected tab and the current one"), /* @__PURE__ */ React4.createElement("h4", null, "Middle mouse button"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "With the middle mouse button you can close a tab"), /* @__PURE__ */ React4.createElement("h4", null, "[Enter / Return] button"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "With the return button you can switch to the currently selected tab, or move multiple selected tabs to a new window"))));
+      ), /* @__PURE__ */ React4.createElement("label", { onMouseEnter: this.props.tabActionsText, htmlFor: "tabactions_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } })), /* @__PURE__ */ React4.createElement("label", { className: "textlabel", htmlFor: "tabactions_mode", style: { whiteSpace: "pre", lineHeight: "2rem" } }, "\u663E\u793A\u64CD\u4F5C\u6309\u94AE"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u5728\u6BCF\u4E2A\u7A97\u53E3\u4E2D\u663E\u793A\u6309\u94AE\uFF1A\u6253\u5F00\u65B0\u6807\u7B7E\u9875\u3001\u6700\u5C0F\u5316\u7A97\u53E3\u3001\u4E3A\u7A97\u53E3\u6307\u5B9A\u989C\u8272\u548C\u5173\u95ED\u7A97\u53E3\u3002", /* @__PURE__ */ React4.createElement("br", null), /* @__PURE__ */ React4.createElement("i", null, "\u9ED8\u8BA4\u503C\uFF1A\u5DF2\u542F\u7528")))), /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("h4", null, "\u9AD8\u7EA7\u8BBE\u7F6E"), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("a", { href: "#", onClick: this.openIncognitoOptions }, "\u5141\u8BB8\u5728\u9690\u8EAB\u6A21\u5F0F\u4E2D\u4F7F\u7528")), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u5982\u679C\u4F60\u8FD8\u60F3\u5728 Tab Manager \u6982\u89C8\u4E2D\u67E5\u770B\u9690\u8EAB\u6807\u7B7E\u9875\uFF0C\u8BF7\u4E3A\u6B64\u6269\u5C55\u542F\u7528\u9690\u8EAB\u8BBF\u95EE\u6743\u9650\u3002")), /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("a", { href: "#", onClick: this.openShortcuts }, "\u66F4\u6539\u5FEB\u6377\u952E"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u5982\u679C\u4F60\u60F3\u7981\u7528\u6216\u66F4\u6539\u6253\u5F00 Tab Manager Plus \u7684\u5FEB\u6377\u952E\uFF0C\u53EF\u4EE5\u5728\u6B64\u5904\u4FEE\u6539\u3002"))), /* @__PURE__ */ React4.createElement("div", { className: "optionsBox" }, /* @__PURE__ */ React4.createElement("div", { className: "toggle-box" }, /* @__PURE__ */ React4.createElement("h4", null, "\u9F20\u6807\u53F3\u952E"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u4F7F\u7528\u9F20\u6807\u53F3\u952E\u53EF\u4EE5\u9009\u62E9\u6807\u7B7E"), /* @__PURE__ */ React4.createElement("h4", null, "Shift+\u9F20\u6807\u53F3\u952E"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u6309\u4F4F Shift \u5E76\u70B9\u51FB\u9F20\u6807\u53F3\u952E\uFF0C\u53EF\u4EE5\u9009\u62E9\u4E0A\u6B21\u9009\u4E2D\u7684\u6807\u7B7E\u4E0E\u5F53\u524D\u6807\u7B7E\u4E4B\u95F4\u7684\u6240\u6709\u6807\u7B7E"), /* @__PURE__ */ React4.createElement("h4", null, "\u9F20\u6807\u4E2D\u952E"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u4F7F\u7528\u9F20\u6807\u4E2D\u952E\u53EF\u4EE5\u5173\u95ED\u6807\u7B7E"), /* @__PURE__ */ React4.createElement("h4", null, "[Enter / \u56DE\u8F66] \u952E"), /* @__PURE__ */ React4.createElement("div", { className: "option-description" }, "\u6309\u56DE\u8F66\u952E\u53EF\u4EE5\u5207\u6362\u5230\u5F53\u524D\u9009\u4E2D\u7684\u6807\u7B7E\uFF0C\u6216\u5C06\u591A\u4E2A\u9009\u4E2D\u7684\u6807\u7B7E\u79FB\u5230\u65B0\u7A97\u53E3"))));
     }
     async openIncognitoOptions() {
       await browser6.tabs.create({
@@ -9664,7 +9664,7 @@
       await browser6.tabs.create({ url: "chrome://extensions/shortcuts" });
     }
     licenses() {
-      return /* @__PURE__ */ React4.createElement("div", { className: "licenses", key: "licenses" }, /* @__PURE__ */ React4.createElement("div", { className: "license" }, "Tab Manager Plus is based on", " ", /* @__PURE__ */ React4.createElement("a", { href: "https://github.com/dsc/Tab-Manager", target: "_blank", title: "Tab-Manager" }, "dsc/Tab-Manager"), ",", " ", /* @__PURE__ */ React4.createElement("a", { href: "https://github.com/joshperry/Tab-Manager", target: "_blank", title: "Tab-Manager" }, "joshperry/Tab-Manager"), " ", "and", " ", /* @__PURE__ */ React4.createElement("a", { href: "https://github.com/JonasNo/Tab-Manager", target: "_blank", title: "Tab-Manager" }, "JonasNo/Tab-Manager"), ".", /* @__PURE__ */ React4.createElement("br", null), "Licensed by", " ", /* @__PURE__ */ React4.createElement("a", { href: "http://creativecommons.org/licenses/by/3.0/", target: "_blank", title: " Mozilla Public License (MPL)" }, "MPLv2"), ". Icons made by", " ", /* @__PURE__ */ React4.createElement("a", { href: "http://www.freepik.com", title: "Freepik" }, "Freepik"), " ", "from", " ", /* @__PURE__ */ React4.createElement("a", { href: "http://www.flaticon.com", title: "Flaticon" }, "www.flaticon.com"), ". Licensed by", " ", /* @__PURE__ */ React4.createElement("a", { href: "http://creativecommons.org/licenses/by/3.0/", target: "_blank", title: "Creative Commons BY 3.0" }, "CC 3.0 BY"), "."));
+      return /* @__PURE__ */ React4.createElement("div", { className: "licenses", key: "licenses" }, /* @__PURE__ */ React4.createElement("div", { className: "license" }, "Tab Manager Plus \u57FA\u4E8E", " ", /* @__PURE__ */ React4.createElement("a", { href: "https://github.com/dsc/Tab-Manager", target: "_blank", title: "Tab-Manager" }, "dsc/Tab-Manager"), ",", " ", /* @__PURE__ */ React4.createElement("a", { href: "https://github.com/joshperry/Tab-Manager", target: "_blank", title: "Tab-Manager" }, "joshperry/Tab-Manager"), " ", "\u548C", " ", /* @__PURE__ */ React4.createElement("a", { href: "https://github.com/JonasNo/Tab-Manager", target: "_blank", title: "Tab-Manager" }, "JonasNo/Tab-Manager"), ".", /* @__PURE__ */ React4.createElement("br", null), "\u6388\u6743\u534F\u8BAE\uFF1A", " ", /* @__PURE__ */ React4.createElement("a", { href: "http://creativecommons.org/licenses/by/3.0/", target: "_blank", title: " Mozilla Public License (MPL)" }, "MPLv2"), ". \u56FE\u6807\u4F5C\u8005\uFF1A", " ", /* @__PURE__ */ React4.createElement("a", { href: "http://www.freepik.com", title: "Freepik" }, "Freepik"), " ", "\u6765\u6E90\uFF1A", " ", /* @__PURE__ */ React4.createElement("a", { href: "http://www.flaticon.com", title: "Flaticon" }, "www.flaticon.com"), ". \u6388\u6743\u534F\u8BAE\uFF1A", " ", /* @__PURE__ */ React4.createElement("a", { href: "http://creativecommons.org/licenses/by/3.0/", target: "_blank", title: "Creative Commons BY 3.0" }, "CC 3.0 BY"), "."));
     }
     render() {
       var children = [];
@@ -9866,7 +9866,7 @@
               "div",
               {
                 className: "icon tabaction save " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Save this window for later\nWill save " + tabs4.length + " tabs with this window for later. Please note : The saved tabs will lose their history.",
+                title: "\u4FDD\u5B58\u6B64\u7A97\u53E3\u4F9B\u4EE5\u540E\u4F7F\u7528\n\u5C06\u4FDD\u5B58 " + tabs4.length + " \u4E2A\u6807\u7B7E\u4E0E\u6B64\u7A97\u53E3\u4F9B\u4EE5\u540E\u4F7F\u7528\u3002\u8BF7\u6CE8\u610F\uFF1A\u4FDD\u5B58\u7684\u6807\u7B7E\u5C06\u4E22\u5931\u5176\u5386\u53F2\u8BB0\u5F55\u3002",
                 onClick: this.save,
                 onMouseEnter: this.props.hoverIcon
               }
@@ -9874,7 +9874,7 @@
               "div",
               {
                 className: "icon tabaction add " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Open a new tab",
+                title: "\u6253\u5F00\u65B0\u6807\u7B7E\u9875",
                 onClick: this.addTab,
                 onMouseEnter: this.props.hoverIcon
               }
@@ -9882,7 +9882,7 @@
               "div",
               {
                 className: "icon tabaction colors " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change window name or color",
+                title: "\u66F4\u6539\u7A97\u53E3\u540D\u79F0\u6216\u989C\u8272",
                 onClick: this.colors,
                 onMouseEnter: this.props.hoverIcon
               }
@@ -9890,7 +9890,7 @@
               "div",
               {
                 className: "icon tabaction maximize " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Maximize this window\nWill maximize " + tabs4.length + " tabs",
+                title: "\u6700\u5927\u5316\u6B64\u7A97\u53E3\n\u5C06\u6700\u5927\u5316 " + tabs4.length + " \u4E2A\u6807\u7B7E",
                 onClick: this.maximize,
                 onMouseEnter: this.props.hoverIcon
               }
@@ -9898,7 +9898,7 @@
               "div",
               {
                 className: "icon tabaction minimize " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Minimize this window\nWill minimize " + tabs4.length + " tabs",
+                title: "\u6700\u5C0F\u5316\u6B64\u7A97\u53E3\n\u5C06\u6700\u5C0F\u5316 " + tabs4.length + " \u4E2A\u6807\u7B7E",
                 onClick: this.minimize,
                 onMouseEnter: this.props.hoverIcon
               }
@@ -9906,7 +9906,7 @@
               "div",
               {
                 className: "icon tabaction close " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Close this window\nWill close " + tabs4.length + " tabs",
+                title: "\u5173\u95ED\u6B64\u7A97\u53E3\n\u5C06\u5173\u95ED " + tabs4.length + " \u4E2A\u6807\u7B7E",
                 onClick: this.close,
                 onMouseEnter: this.props.hoverIcon
               }
@@ -9915,23 +9915,23 @@
         }
         if (this.state.colorActive) {
           tabs4.push(
-            /* @__PURE__ */ React5.createElement("div", { key: "windowcolors_" + _this.props.window.id, className: "window-colors " + (this.state.colorActive ? "" : "hidden"), onClick: this.stop, onKeyDown: this.checkKey }, /* @__PURE__ */ React5.createElement("h2", { className: "window-x", onClick: this.closePopup }, "x"), /* @__PURE__ */ React5.createElement("h3", { className: "center" }, "Name the window"), /* @__PURE__ */ React5.createElement(
+            /* @__PURE__ */ React5.createElement("div", { key: "windowcolors_" + _this.props.window.id, className: "window-colors " + (this.state.colorActive ? "" : "hidden"), onClick: this.stop, onKeyDown: this.checkKey }, /* @__PURE__ */ React5.createElement("h2", { className: "window-x", onClick: this.closePopup }, "x"), /* @__PURE__ */ React5.createElement("h3", { className: "center" }, "\u547D\u540D\u7A97\u53E3"), /* @__PURE__ */ React5.createElement(
               "input",
               {
                 className: "window-name-input",
                 type: "text",
                 onChange: this.changeName,
                 value: this.state.name,
-                placeholder: this.state.auto_name ?? "Name window...",
+                placeholder: this.state.auto_name ?? "\u547D\u540D\u7A97\u53E3...",
                 tabIndex: 1,
                 ref: "namebox",
                 onKeyDown: this.checkKey
               }
-            ), /* @__PURE__ */ React5.createElement("h3", { className: "center" }, "Pick a color"), /* @__PURE__ */ React5.createElement("div", { className: "colors-box" }, /* @__PURE__ */ React5.createElement(
+            ), /* @__PURE__ */ React5.createElement("h3", { className: "center" }, "\u9009\u62E9\u989C\u8272"), /* @__PURE__ */ React5.createElement("div", { className: "colors-box" }, /* @__PURE__ */ React5.createElement(
               "div",
               {
                 className: "icon tabaction default " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "default" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -9939,7 +9939,7 @@
               "div",
               {
                 className: "icon tabaction color1 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color1" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -9947,7 +9947,7 @@
               "div",
               {
                 className: "icon tabaction color2 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color2" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -9955,7 +9955,7 @@
               "div",
               {
                 className: "icon tabaction color3 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color3" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -9963,7 +9963,7 @@
               "div",
               {
                 className: "icon tabaction color4 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color4" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -9971,7 +9971,7 @@
               "div",
               {
                 className: "icon tabaction color5 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color5" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -9979,7 +9979,7 @@
               "div",
               {
                 className: "icon tabaction color6 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color6" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -9987,7 +9987,7 @@
               "div",
               {
                 className: "icon tabaction color7 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color7" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -9995,7 +9995,7 @@
               "div",
               {
                 className: "icon tabaction color8 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color8" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10003,7 +10003,7 @@
               "div",
               {
                 className: "icon tabaction color9 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color9" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10011,7 +10011,7 @@
               "div",
               {
                 className: "icon tabaction color10 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color10" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10019,7 +10019,7 @@
               "div",
               {
                 className: "icon tabaction color11 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color11" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10027,7 +10027,7 @@
               "div",
               {
                 className: "icon tabaction color12 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color12" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10035,7 +10035,7 @@
               "div",
               {
                 className: "icon tabaction color13 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color13" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10043,7 +10043,7 @@
               "div",
               {
                 className: "icon tabaction color14 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color14" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10051,7 +10051,7 @@
               "div",
               {
                 className: "icon tabaction color15 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color15" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10059,7 +10059,7 @@
               "div",
               {
                 className: "icon tabaction color16 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color16" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10067,7 +10067,7 @@
               "div",
               {
                 className: "icon tabaction color17 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color17" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10075,7 +10075,7 @@
               "div",
               {
                 className: "icon tabaction color18 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color18" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10083,7 +10083,7 @@
               "div",
               {
                 className: "icon tabaction color19 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color19" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10091,7 +10091,7 @@
               "div",
               {
                 className: "icon tabaction color20 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color20" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10099,7 +10099,7 @@
               "div",
               {
                 className: "icon tabaction color21 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color21" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10107,7 +10107,7 @@
               "div",
               {
                 className: "icon tabaction color22 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color22" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10115,7 +10115,7 @@
               "div",
               {
                 className: "icon tabaction color23 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color23" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10123,7 +10123,7 @@
               "div",
               {
                 className: "icon tabaction color24 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color24" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10131,7 +10131,7 @@
               "div",
               {
                 className: "icon tabaction color25 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction"),
-                title: "Change background color",
+                title: "\u66F4\u6539\u80CC\u666F\u989C\u8272",
                 onClick: this.changeColors.bind(this, { colorActive: false, color: "color25" }),
                 onMouseEnter: this.props.hoverIcon
               }
@@ -10147,7 +10147,7 @@
                 key: "window-" + this.props.window.id + "-windowTitle",
                 className: "editName center windowTitle",
                 onClick: this.colors,
-                title: "Change the name of this window",
+                title: "\u66F4\u6539\u6B64\u7A97\u53E3\u540D\u79F0",
                 onMouseEnter: this.props.hoverIcon
               },
               this.props.window.incognito ? "\u{1F575}" : "",
@@ -10192,7 +10192,7 @@
             onMouseLeave: this.hoverWindowOut,
             onDrop: this.drop
           },
-          /* @__PURE__ */ React5.createElement("div", { key: "windowcontainer_" + this.props.window.id, className: "windowcontainer", title: "Focus this window\nWill select this window with " + tabs4.length + " tabs" }, children)
+          /* @__PURE__ */ React5.createElement("div", { key: "windowcontainer_" + this.props.window.id, className: "windowcontainer", title: "\u805A\u7126\u6B64\u7A97\u53E3\n\u5C06\u9009\u4E2D\u5305\u542B " + tabs4.length + " \u4E2A\u6807\u7B7E\u7684\u7A97\u53E3" }, children)
         );
       } else {
         return null;
@@ -10248,7 +10248,7 @@
     }
     hoverWindow(tabs4, _) {
       this.setState({ hover: true });
-      this.props.hoverIcon("Focus this window\nWill select this window with " + tabs4.length + " tabs");
+      this.props.hoverIcon("\u805A\u7126\u6B64\u7A97\u53E3\n\u5C06\u9009\u4E2D\u5305\u542B " + tabs4.length + " \u4E2A\u6807\u7B7E\u7684\u7A97\u53E3");
     }
     hoverWindowOut(_) {
       this.setState({ hover: false });
@@ -10422,7 +10422,7 @@
         }
       }
       if (more > 0) {
-        sorted.push(" & " + more + " more");
+        sorted.push(" \u7B49 " + more + " \u4E2A");
       }
       return sorted;
     }
@@ -10455,7 +10455,7 @@
   window.loaded = false;
   window.inPopup = window.location.search.indexOf("?popup") > -1;
   window.inPanel = window.location.search.indexOf("?panel") > -1;
-  window.extensionVersion = "6.0.0";
+  window.extensionVersion = "undefined";
   window.onload = () => window.requestAnimationFrame(loadApp);
   setTimeout(loadApp, 75);
   setTimeout(loadApp, 125);

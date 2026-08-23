@@ -229,9 +229,9 @@ export class Window extends React.Component<IWindow, IWindowState> {
 							<div
 								className={"icon tabaction save " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
 								title={
-									"Save this window for later\nWill save " +
+									"保存此窗口供以后使用\n将保存 " +
 									tabs.length +
-									" tabs with this window for later. Please note : The saved tabs will lose their history."
+									" 个标签与此窗口供以后使用。请注意：保存的标签将丢失其历史记录。"
 								}
 								onClick={this.save}
 								onMouseEnter={this.props.hoverIcon}
@@ -239,34 +239,34 @@ export class Window extends React.Component<IWindow, IWindowState> {
 						) : false}
 						<div
 							className={"icon tabaction add " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-							title="Open a new tab"
+							title="打开新标签页"
 							onClick={this.addTab}
 							onMouseEnter={this.props.hoverIcon}
 						/>
 						<div
 							className={"icon tabaction colors " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-							title="Change window name or color"
+							title="更改窗口名称或颜色"
 							onClick={this.colors}
 							onMouseEnter={this.props.hoverIcon}
 						/>
 						{this.props.window.state === "minimized" ? (
 							<div
 								className={"icon tabaction maximize " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title={"Maximize this window\nWill maximize " + tabs.length + " tabs"}
+								title={"最大化此窗口\n将最大化 " + tabs.length + " 个标签"}
 								onClick={this.maximize}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 						) : (
 							<div
 								className={"icon tabaction minimize " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title={"Minimize this window\nWill minimize " + tabs.length + " tabs"}
+								title={"最小化此窗口\n将最小化 " + tabs.length + " 个标签"}
 								onClick={this.minimize}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 						)}
 						<div
 							className={"icon tabaction close " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-							title={"Close this window\nWill close " + tabs.length + " tabs"}
+							title={"关闭此窗口\n将关闭 " + tabs.length + " 个标签"}
 							onClick={this.close}
 							onMouseEnter={this.props.hoverIcon}
 						/>
@@ -279,172 +279,172 @@ export class Window extends React.Component<IWindow, IWindowState> {
 						<h2 className="window-x" onClick={this.closePopup}>
 							x
 						</h2>
-						<h3 className="center">Name the window</h3>
+						<h3 className="center">命名窗口</h3>
 						<input
 							className="window-name-input"
 							type="text"
 							onChange={this.changeName}
 							value={this.state.name}
-							placeholder={this.state.auto_name ?? "Name window..."}
+							placeholder={this.state.auto_name ?? "命名窗口..."}
 							tabIndex={1}
 							ref="namebox"
 							onKeyDown={this.checkKey}
 						/>
-						<h3 className="center">Pick a color</h3>
+						<h3 className="center">选择颜色</h3>
 						<div className="colors-box">
 							<div
 								className={"icon tabaction default " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "default" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color1 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color1" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color2 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color2" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color3 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color3" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color4 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color4" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color5 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color5" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color6 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color6" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color7 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color7" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color8 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color8" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color9 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color9" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color10 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color10" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color11 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color11" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color12 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color12" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color13 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color13" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color14 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color14" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color15 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color15" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color16 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color16" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color17 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color17" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color18 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color18" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color19 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color19" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color20 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color20" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color21 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color21" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color22 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color22" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color23 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color23" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color24 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color24" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
 							<div
 								className={"icon tabaction color25 " + (this.props.layout.indexOf("blocks") > -1 ? "" : "windowaction")}
-								title="Change background color"
+								title="更改背景颜色"
 								onClick={this.changeColors.bind(this, { colorActive: false, color: "color25" })}
 								onMouseEnter={this.props.hoverIcon}
 							/>
@@ -460,7 +460,7 @@ export class Window extends React.Component<IWindow, IWindowState> {
 						key={"window-" + this.props.window.id + "-windowTitle"}
 						className="editName center windowTitle"
 						onClick={this.colors}
-						title="Change the name of this window"
+						title="更改此窗口名称"
 						onMouseEnter={this.props.hoverIcon}
 					>
 						{this.props.window.incognito ? "🕵" : ""}
@@ -523,7 +523,7 @@ export class Window extends React.Component<IWindow, IWindowState> {
 					onMouseLeave={this.hoverWindowOut}
 					onDrop={this.drop}
 				>
-					<div key={"windowcontainer_" + this.props.window.id} className="windowcontainer" title={"Focus this window\nWill select this window with " + tabs.length + " tabs"}>{children}</div>
+					<div key={"windowcontainer_" + this.props.window.id} className="windowcontainer" title={"聚焦此窗口\n将选中包含 " + tabs.length + " 个标签的窗口"}>{children}</div>
 				</div>
 			);
 		} else {
@@ -583,7 +583,7 @@ export class Window extends React.Component<IWindow, IWindowState> {
 	}
 	hoverWindow(tabs, _) {
 		this.setState({ hover: true });
-		this.props.hoverIcon("Focus this window\nWill select this window with " + tabs.length + " tabs");
+		this.props.hoverIcon("聚焦此窗口\n将选中包含 " + tabs.length + " 个标签的窗口");
 		// this.props.hoverIcon(e);
 	}
 	hoverWindowOut(_) {
@@ -781,7 +781,7 @@ export class Window extends React.Component<IWindow, IWindowState> {
 			}
 		}
 		if (more > 0) {
-			sorted.push(" & " + more + " more");
+			sorted.push(" 等 " + more + " 个");
 		}
 		return sorted;
 	}

@@ -1759,20 +1759,20 @@
     await browser7.contextMenus.removeAll();
     browser7.contextMenus.create({
       id: open_in_own_tab,
-      title: "\u{1F4D4} Open in own tab",
+      title: "\u{1F4D4} \u5728\u72EC\u7ACB\u6807\u7B7E\u9875\u6253\u5F00",
       contexts: ["action"]
     });
     if (!!browser7.action.openPopup) {
       browser7.contextMenus.create({
         id: open_popup,
-        title: "\u{1F4D1} Open popup",
+        title: "\u{1F4D1} \u6253\u5F00\u5F39\u7A97",
         contexts: ["action"]
       });
     }
     if (!!browser7.sidebarAction) {
       browser7.contextMenus.create({
         id: open_sidebar,
-        title: "\u{1F5C2} Open sidebar",
+        title: "\u{1F5C2} \u6253\u5F00\u4FA7\u8FB9\u680F",
         contexts: ["action"]
       });
     }
@@ -1782,66 +1782,66 @@
       contexts: ["action"]
     });
     browser7.contextMenus.create({
-      title: "\u{1F60D} Support this extension",
+      title: "\u{1F60D} \u652F\u6301\u6B64\u6269\u5C55",
       id: support_menu,
       "contexts": ["action"]
     });
     browser7.contextMenus.create({
       id: review,
-      title: "\u2B50 Leave a review",
+      title: "\u2B50 \u8BC4\u4EF7",
       "contexts": ["action"],
       parentId: "support_menu"
     });
     browser7.contextMenus.create({
       id: donate,
-      title: "\u2615 Donate to keep Extensions Alive",
+      title: "\u2615 \u8D5E\u52A9\u652F\u6301\u6269\u5C55\u5F00\u53D1",
       "contexts": ["action"],
       parentId: "support_menu"
     });
     browser7.contextMenus.create({
       id: patron,
-      title: "\u{1F4B0} Become a Patron",
+      title: "\u{1F4B0} \u6210\u4E3A\u8D5E\u52A9\u8005",
       "contexts": ["action"],
       parentId: "support_menu"
     });
     browser7.contextMenus.create({
       id: twitter,
-      title: "\u{1F426} Follow on Twitter",
+      title: "\u{1F426} \u5728 Twitter \u4E0A\u5173\u6CE8",
       "contexts": ["action"],
       parentId: "support_menu"
     });
     browser7.contextMenus.create({
-      title: "\u{1F914} Issues and Suggestions",
+      title: "\u{1F914} \u95EE\u9898\u4E0E\u5EFA\u8BAE",
       id: code_menu,
       "contexts": ["action"]
     });
     browser7.contextMenus.create({
       id: changelog,
-      title: "\u{1F195} View recent changes",
+      title: "\u{1F195} \u67E5\u770B\u6700\u8FD1\u66F4\u65B0",
       "contexts": ["action"],
       parentId: "code_menu"
     });
     browser7.contextMenus.create({
       id: options,
-      title: "\u2699 Edit Options",
+      title: "\u2699 \u7F16\u8F91\u9009\u9879",
       "contexts": ["action"],
       parentId: "code_menu"
     });
     browser7.contextMenus.create({
       id: source,
-      title: "\u{1F4BB} View source code",
+      title: "\u{1F4BB} \u67E5\u770B\u6E90\u7801",
       "contexts": ["action"],
       parentId: "code_menu"
     });
     browser7.contextMenus.create({
       id: report,
-      title: "\u{1F914} Report an issue",
+      title: "\u{1F914} \u62A5\u544A\u95EE\u9898",
       "contexts": ["action"],
       parentId: "code_menu"
     });
     browser7.contextMenus.create({
       id: send,
-      title: "\u{1F4A1} Send a suggestion",
+      title: "\u{1F4A1} \u53D1\u9001\u5EFA\u8BAE",
       "contexts": ["action"],
       parentId: "code_menu"
     });
