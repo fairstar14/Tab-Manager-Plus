@@ -962,6 +962,7 @@ table td {
 	height: 100%;
 	pointer-events: none;
 	z-index: 50000;
+	overflow: visible !important;
 }
 
 /* 连线按钮图标（与 .duplicates 一致，引用 PNG，其余继承 .icon 基础样式） */

@@ -8128,13 +8128,11 @@
           const colorIdx = (line.group - 1) % 10;
           const color = this.state.connectLinesColors[colorIdx] || "rgba(128,128,128,0.5)";
           return /* @__PURE__ */ React3.createElement(
-            "line",
+            "path",
             {
               key: "connectline-" + i,
-              x1: line.x1,
-              y1: line.y1,
-              x2: line.x2,
-              y2: line.y2,
+              d: line.d,
+              fill: "none",
               stroke: color,
               strokeWidth: "2",
               strokeDasharray: "4 2"
@@ -8625,7 +8623,7 @@
         if (!tabEl) continue;
         const rect = tabEl.getBoundingClientRect();
         tabPositions.set(tabId, {
-          x: rect.left - containerRect.left + rect.width / 2,
+          x: rect.right - containerRect.left,
           y: rect.top - containerRect.top + rect.height / 2,
           group
         });
@@ -8652,12 +8650,14 @@
       ];
       for (const [group, positions] of groups) {
         if (positions.length < 2) continue;
+        positions.sort((a, b) => a.y - b.y);
         for (let i = 0; i < positions.length - 1; i++) {
+          const x1 = positions[i].x;
+          const y1 = positions[i].y;
+          const x2 = positions[i + 1].x;
+          const y2 = positions[i + 1].y;
           lines.push({
-            x1: positions[i].x,
-            y1: positions[i].y,
-            x2: positions[i + 1].x,
-            y2: positions[i + 1].y,
+            d: "M " + x1 + " " + y1 + " C " + (x1 + 40) + " " + y1 + ", " + (x2 + 40) + " " + y2 + ", " + x2 + " " + y2,
             group
           });
         }

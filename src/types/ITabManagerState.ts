@@ -44,7 +44,7 @@ export interface ITabManagerState {
 	colorsActive: number,
 
 	connectLines: boolean,
-	connectLinesData: Array<{ x1: number; y1: number; x2: number; y2: number; group: number }>,
+	connectLinesData: Array<{ d: string; group: number }>,
 	connectLinesColors: string[],
 
 	resetTimeout: number

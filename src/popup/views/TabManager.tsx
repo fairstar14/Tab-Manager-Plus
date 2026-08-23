@@ -67,7 +67,7 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 			colorsActive: 0,
 
 			connectLines: false,
-			connectLinesData: [] as Array<{ x1: number; y1: number; x2: number; y2: number; group: number }>,
+			connectLinesData: [] as Array<{ d: string; group: number }>,
 			connectLinesColors: [] as string[],
 
 			tabCount: 0,
@@ -416,10 +416,10 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 							const colorIdx = ((line.group - 1) % 10);
 							const color = this.state.connectLinesColors[colorIdx] || "rgba(128,128,128,0.5)";
 							return (
-								<line
+								<path
 									key={"connectline-" + i}
-									x1={line.x1} y1={line.y1}
-									x2={line.x2} y2={line.y2}
+									d={line.d}
+									fill="none"
 									stroke={color}
 									strokeWidth="2"
 									strokeDasharray="4 2"
@@ -988,14 +988,14 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 
 		const containerRect = container.getBoundingClientRect();
 
-		// 收集每个重复标签的位置和组号
+		// 收集每个重复标签右边缘中点的坐标和组号
 		const tabPositions = new Map<number, { x: number; y: number; group: number }>();
 		for (const [tabId, group] of this.state.dupGroups) {
 			const tabEl = container.querySelector("#tab-" + tabId) as HTMLElement;
 			if (!tabEl) continue;
 			const rect = tabEl.getBoundingClientRect();
 			tabPositions.set(tabId, {
-				x: rect.left - containerRect.left + rect.width / 2,
+				x: rect.right - containerRect.left,
 				y: rect.top - containerRect.top + rect.height / 2,
 				group: group
 			});
@@ -1010,8 +1010,8 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 			groups.get(pos.group)!.push({ x: pos.x, y: pos.y });
 		}
 
-		// 生成连线 path（同组内相邻标签连线）
-		const lines: Array<{ x1: number; y1: number; x2: number; y2: number; group: number }> = [];
+		// 生成贝塞尔曲线 path（同组内按 y 坐标排序后相邻标签连线）
+		const lines: Array<{ d: string; group: number }> = [];
 		const colors = [
 			"rgba(255, 99, 71, 0.6)",
 			"rgba(54, 162, 235, 0.6)",
@@ -1027,13 +1027,16 @@ export class TabManager extends React.Component<ITabManager, ITabManagerState> {
 
 		for (const [group, positions] of groups) {
 			if (positions.length < 2) continue;
-			// 同组内按位置排序后两两连线
+			// 同组内按 y 坐标排序
+			positions.sort((a, b) => a.y - b.y);
+			// 相邻标签之间画贝塞尔曲线，控制点向右偏移 40px 形成绕行弧线
 			for (let i = 0; i < positions.length - 1; i++) {
+				const x1 = positions[i].x;
+				const y1 = positions[i].y;
+				const x2 = positions[i + 1].x;
+				const y2 = positions[i + 1].y;
 				lines.push({
-					x1: positions[i].x,
-					y1: positions[i].y,
-					x2: positions[i + 1].x,
-					y2: positions[i + 1].y,
+					d: "M " + x1 + " " + y1 + " C " + (x1 + 40) + " " + y1 + ", " + (x2 + 40) + " " + y2 + ", " + x2 + " " + y2,
 					group: group
 				});
 			}
