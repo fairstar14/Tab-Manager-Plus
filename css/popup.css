@@ -877,27 +877,27 @@ table td {
 	vertical-align: top;
 }
 /* === 分组高亮 === */
-.tab.dup-group-1 { border-color: rgba(255, 99, 71, 0.8) !important; box-shadow: 0 0 4px rgba(255, 99, 71, 0.5); }
-.tab.dup-group-2 { border-color: rgba(54, 162, 235, 0.8) !important; box-shadow: 0 0 4px rgba(54, 162, 235, 0.5); }
-.tab.dup-group-3 { border-color: rgba(255, 206, 86, 0.8) !important; box-shadow: 0 0 4px rgba(255, 206, 86, 0.5); }
-.tab.dup-group-4 { border-color: rgba(75, 192, 192, 0.8) !important; box-shadow: 0 0 4px rgba(75, 192, 192, 0.5); }
-.tab.dup-group-5 { border-color: rgba(153, 102, 255, 0.8) !important; box-shadow: 0 0 4px rgba(153, 102, 255, 0.5); }
-.tab.dup-group-6 { border-color: rgba(255, 159, 64, 0.8) !important; box-shadow: 0 0 4px rgba(255, 159, 64, 0.5); }
-.tab.dup-group-7 { border-color: rgba(199, 199, 199, 0.8) !important; box-shadow: 0 0 4px rgba(199, 199, 199, 0.5); }
-.tab.dup-group-8 { border-color: rgba(83, 102, 255, 0.8) !important; box-shadow: 0 0 4px rgba(83, 102, 255, 0.5); }
-.tab.dup-group-9 { border-color: rgba(40, 180, 99, 0.8) !important; box-shadow: 0 0 4px rgba(40, 180, 99, 0.5); }
-.tab.dup-group-10 { border-color: rgba(233, 78, 146, 0.8) !important; box-shadow: 0 0 4px rgba(233, 78, 146, 0.5); }
+.tab.dup-group-1 { background-color: rgba(255, 99, 71, 0.55) !important; }
+.tab.dup-group-2 { background-color: rgba(54, 162, 235, 0.55) !important; }
+.tab.dup-group-3 { background-color: rgba(255, 206, 86, 0.55) !important; }
+.tab.dup-group-4 { background-color: rgba(75, 192, 192, 0.55) !important; }
+.tab.dup-group-5 { background-color: rgba(153, 102, 255, 0.55) !important; }
+.tab.dup-group-6 { background-color: rgba(255, 159, 64, 0.55) !important; }
+.tab.dup-group-7 { background-color: rgba(199, 199, 199, 0.55) !important; }
+.tab.dup-group-8 { background-color: rgba(83, 102, 255, 0.55) !important; }
+.tab.dup-group-9 { background-color: rgba(40, 180, 99, 0.55) !important; }
+.tab.dup-group-10 { background-color: rgba(233, 78, 146, 0.55) !important; }
 /* 第11组回到第1色 */
-.tab.dup-group-11 { border-color: rgba(255, 99, 71, 0.8) !important; box-shadow: 0 0 4px rgba(255, 99, 71, 0.5); }
-.tab.dup-group-12 { border-color: rgba(54, 162, 235, 0.8) !important; box-shadow: 0 0 4px rgba(54, 162, 235, 0.5); }
-.tab.dup-group-13 { border-color: rgba(255, 206, 86, 0.8) !important; box-shadow: 0 0 4px rgba(255, 206, 86, 0.5); }
-.tab.dup-group-14 { border-color: rgba(75, 192, 192, 0.8) !important; box-shadow: 0 0 4px rgba(75, 192, 192, 0.5); }
-.tab.dup-group-15 { border-color: rgba(153, 102, 255, 0.8) !important; box-shadow: 0 0 4px rgba(153, 102, 255, 0.5); }
-.tab.dup-group-16 { border-color: rgba(255, 159, 64, 0.8) !important; box-shadow: 0 0 4px rgba(255, 159, 64, 0.5); }
-.tab.dup-group-17 { border-color: rgba(199, 199, 199, 0.8) !important; box-shadow: 0 0 4px rgba(199, 199, 199, 0.5); }
-.tab.dup-group-18 { border-color: rgba(83, 102, 255, 0.8) !important; box-shadow: 0 0 4px rgba(83, 102, 255, 0.5); }
-.tab.dup-group-19 { border-color: rgba(40, 180, 99, 0.8) !important; box-shadow: 0 0 4px rgba(40, 180, 99, 0.5); }
-.tab.dup-group-20 { border-color: rgba(233, 78, 146, 0.8) !important; box-shadow: 0 0 4px rgba(233, 78, 146, 0.5); }
+.tab.dup-group-11 { background-color: rgba(255, 99, 71, 0.55) !important; }
+.tab.dup-group-12 { background-color: rgba(54, 162, 235, 0.55) !important; }
+.tab.dup-group-13 { background-color: rgba(255, 206, 86, 0.55) !important; }
+.tab.dup-group-14 { background-color: rgba(75, 192, 192, 0.55) !important; }
+.tab.dup-group-15 { background-color: rgba(153, 102, 255, 0.55) !important; }
+.tab.dup-group-16 { background-color: rgba(255, 159, 64, 0.55) !important; }
+.tab.dup-group-17 { background-color: rgba(199, 199, 199, 0.55) !important; }
+.tab.dup-group-18 { background-color: rgba(83, 102, 255, 0.55) !important; }
+.tab.dup-group-19 { background-color: rgba(40, 180, 99, 0.55) !important; }
+.tab.dup-group-20 { background-color: rgba(233, 78, 146, 0.55) !important; }
 
 /* 重复标签放大（照搬原版 .selected 效果） */
 .tab.dup-highlighted {
