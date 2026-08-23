@@ -56,16 +56,14 @@
   - "Right mouse button" → "鼠标右键"
   - "Middle mouse button" → "鼠标中键"
   - "[Enter / Return] button" → "[Enter / 回车] 键"
-  - "Donate a Coffee" → "赞助"
+
   - "Rate Tab Manager Plus" → "评价 Tab Manager Plus"
   - "Options" → "选项"
   - "Open in own tab" → "在独立标签页打开"
   - "Open popup" → "打开弹窗"
   - "Open sidebar" → "打开侧边栏"
   - "Support this extension" → "支持此扩展"
-  - "Leave a review" → "评价"
-  - "Donate to keep Extensions Alive" → "赞助支持扩展开发"
-  - "Become a Patron" → "成为赞助者"
+
   - "Follow on Twitter" → "在 Twitter 上关注"
   - "Issues and Suggestions" → "问题与建议"
   - "View recent changes" → "查看最近更新"

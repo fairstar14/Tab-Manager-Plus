@@ -1832,14 +1832,13 @@
         await browser7.tabs.create({ url: "options.html" });
         break;
       case report:
-        await browser7.tabs.create({ url: "https://github.com/stefanXO/Tab-Manager-Plus/issues" });
+        await browser7.tabs.create({ url: "https://github.com/fairstar14/Tab-Manager-Plus/issues" });
         break;
       case source:
         await browser7.tabs.create({ url: "https://github.com/fairstar14/Tab-Manager-Plus" });
         break;
       case send:
-        await browser7.tabs.create({ url: "https://github.com/stefanXO/Tab-Manager-Plus/issues" });
-        await browser7.tabs.create({ url: "mailto:markus+tmp@stefanxo.com" });
+        await browser7.tabs.create({ url: "https://github.com/fairstar14/Tab-Manager-Plus/issues" });
         break;
     }
   }

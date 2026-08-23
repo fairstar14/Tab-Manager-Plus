@@ -99,14 +99,13 @@ async function contextListeners(info: browser.Menus.OnClickData, tab?: browser.T
 			await browser.tabs.create({url: 'options.html'});
 			break;
 		case S.report:
-			await browser.tabs.create({url: 'https://github.com/stefanXO/Tab-Manager-Plus/issues'});
+			await browser.tabs.create({url: 'https://github.com/fairstar14/Tab-Manager-Plus/issues'});
 			break;
 		case S.source:
 			await browser.tabs.create({url: 'https://github.com/fairstar14/Tab-Manager-Plus'});
 			break;
 		case S.send:
-			await browser.tabs.create({url: 'https://github.com/stefanXO/Tab-Manager-Plus/issues'});
-			await browser.tabs.create({url: 'mailto:markus+tmp@stefanxo.com'});
+			await browser.tabs.create({url: 'https://github.com/fairstar14/Tab-Manager-Plus/issues'});
 			break;
 
 	}
